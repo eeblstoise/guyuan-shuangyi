@@ -28,6 +28,7 @@
 - 🎠 **自动轮播图** — 5 秒自动切换，支持手动控制与指示器
 - ⬆️ **返回顶部按钮** — 滚动超过 300px 时显示
 - 📱 **响应式布局** — 完美适配电脑、平板、手机
+- 📊 **动态数据加载** — 电话、统计、产品、新闻数据可从 JSON 文件热更新
 
 ---
 
@@ -57,6 +58,7 @@ http://localhost:8080
 ```
 
 > 注意：本项目所有依赖（Tailwind CSS、Font Awesome）均通过 CDN 引入，无需安装任何 npm 包，下载即可运行。
+> 如需动态数据加载（JSON 文件），请使用本地服务器方式打开，因为浏览器安全策略会阻止 `file://` 协议加载本地 JSON。
 
 ---
 
@@ -68,7 +70,7 @@ http://localhost:8080
 | **Tailwind CSS v3** | 实用类优先 CSS 框架，CDN 引入 |
 | **原生 JavaScript** | 无框架依赖，纯手写交互逻辑 |
 | **Font Awesome 6** | 图标库，CDN 引入 |
-| **Picsum Photos** | 占位图片服务，无需本地素材 |
+| **GitHub Pages** | 静态网站托管，免费部署 |
 
 ---
 
@@ -76,12 +78,23 @@ http://localhost:8080
 
 ```
 guyuan-shuangyi/
-├── index.html          # 完整网站（单文件，所有代码内置）
-├── README.md           # 项目说明文档
-└── .gitignore          # Git 忽略配置
+├── index.html              # 完整网站（HTML + CSS + JS 内联）
+├── README.md               # 项目说明文档
+├── .gitignore              # Git 忽略配置
+├── data/                   # 动态数据（JSON 文件）
+│   ├── contact.json        # 联系方式（电话、地址、邮箱等）
+│   ├── stats.json          # 统计数据（基地面积、客户数等）
+│   ├── products.json       # 产品数据（名称、描述、图片）
+│   └── news.json           # 新闻数据（企业动态、行业资讯等）
+└── images/                 # 图片资源
+    ├── hero/               # 首页轮播大图（hero-1.jpg ~ hero-3.jpg）
+    ├── about/              # 关于我们页面图片
+    ├── products/           # 产品图片（product-starch.jpg 等）
+    ├── factory/            # 工厂/生产车间照片（factory-1.jpg ~ factory-4.jpg）
+    ├── certificates/       # 资质证书扫描件
+    ├── news/               # 新闻配图
+    └── qr-codes/           # 公众号、视频号二维码
 ```
-
-> 本项目采用**单文件架构**，所有 HTML、CSS、JavaScript 均内联在 `index.html` 中，方便直接部署到 GitHub Pages 或任何静态托管平台。
 
 ---
 
@@ -90,17 +103,56 @@ guyuan-shuangyi/
 通过 GitHub Pages 部署：
 
 ```
-https://<你的用户名>.github.io/guyuan-shuangyi/
+https://eeblstoise.github.io/guyuan-shuangyi/
 ```
 
 ---
 
-## 📝 开发备忘
+## 📝 日常使用：如何更新内容
 
-- 图片统一使用 `https://picsum.photos/seed/{seed}/{width}/{height}` 占位图，替换为公司真实图片时直接修改 `src` 即可
-- 电话号码 `0313-XXXXXXX`、邮箱 `shuangyi@shuangyiny.com` 等占位信息，请替换为企业实际联系方式
-- 地图区域目前为样式占位，可替换为高德地图 / 百度地图 iframe 嵌入代码
-- 二维码图片为占位图，请替换为真实的公众号/视频号二维码
+### 更新图片
+
+把新图片放到对应目录，替换同名文件，然后 push：
+
+```bash
+# 例如：替换首页轮播图
+cp "D:\你的图片\hero-1.jpg" "images\hero\hero-1.jpg"
+
+git add .
+git commit -m "update: 替换首页轮播图"
+git push origin main
+```
+
+### 更新数据（电话、新闻、产品等）
+
+直接编辑 `data/` 目录下的 JSON 文件：
+
+```bash
+# 修改电话
+notepad data/contact.json
+
+# 修改新闻
+notepad data/news.json
+
+git add .
+git commit -m "update: 修改联系方式和新闻"
+git push origin main
+```
+
+> 💡 网页中的数据会自动从 JSON 文件加载，无需修改 HTML 代码。
+
+---
+
+## 📋 占位信息替换清单
+
+| 占位项 | 文件位置 | 替换说明 |
+|--------|----------|----------|
+| `0313-XXXXXXX` | `data/contact.json` + `index.html` | 企业真实电话号码 |
+| `shuangyi@shuangyiny.com` | `data/contact.json` | 企业真实邮箱 |
+| `冀ICP备XXXXXXXX号-1` | `index.html` 页脚 | 真实备案号 |
+| 地图区域 | `index.html` 联系我们 | 可替换为高德/百度地图 iframe |
+| 二维码 | `images/qr-codes/` | 替换为真实公众号/视频号二维码 |
+| 图片 | `images/` 各目录 | 替换为企业真实图片 |
 
 ---
 

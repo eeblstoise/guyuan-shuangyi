@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "马铃薯淀粉",
+    "icon": "fa-wheat-awn",
+    "description": "广泛应用于食品加工、粉条、速冻食品、调味品等领域，白度高、粘度高、糊化温度低，品质稳定可靠。",
+    "image": "images/products/product-starch.jpg",
+    "link": "#contact"
+  },
+  {
+    "id": 2,
+    "name": "工业淀粉",
+    "icon": "fa-industry",
+    "description": "适用于造纸、纺织、制药、化工等工业领域，可根据客户需求定制粘度、白度、细度等技术指标。",
+    "image": "images/products/product-industrial.jpg",
+    "link": "#contact"
+  },
+  {
+    "id": 3,
+    "name": "定制加工",
+    "icon": "fa-cogs",
+    "description": "提供OEM、ODM服务，满足客户个性化需求。支持不同包装规格、技术指标定制，灵活配合订单生产。",
+    "image": "images/products/product-custom.jpg",
+    "link": "#contact"
+  }
+]

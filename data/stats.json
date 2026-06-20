@@ -1,0 +1,14 @@
+{
+  "baseArea": 50000,
+  "baseAreaUnit": "m²+",
+  "baseAreaLabel": "生产基地",
+  "clients": 20,
+  "clientsUnit": "+",
+  "clientsLabel": "合作客户",
+  "capacity": 10000,
+  "capacityUnit": "吨+",
+  "capacityLabel": "年加工能力",
+  "experience": 10,
+  "experienceUnit": "+",
+  "experienceLabel": "行业经验"
+}
