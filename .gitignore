@@ -45,3 +45,4 @@ node_modules/
 
 # 其他
 .cache/
+\n~$*\n*.tmp

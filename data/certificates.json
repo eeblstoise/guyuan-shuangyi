@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "image": "images/certificates/cert-food.jpg",
+    "title": "食品生产许可证",
+    "description": "SC认证，安全合规"
+  },
+  {
+    "id": 2,
+    "image": "images/certificates/cert-iso9001.jpg",
+    "title": "质量管理体系认证",
+    "description": "ISO 9001:2015"
+  },
+  {
+    "id": 3,
+    "image": "images/certificates/cert-iso14001.jpg",
+    "title": "环境管理体系认证",
+    "description": "ISO 14001:2015"
+  },
+  {
+    "id": 4,
+    "image": "images/certificates/cert-iso45001.jpg",
+    "title": "职业健康安全管理体系认证",
+    "description": "ISO 45001:2018"
+  },
+  {
+    "id": 5,
+    "image": "images/certificates/cert-honor.jpg",
+    "title": "企业荣誉证书",
+    "description": "农业产业化龙头企业"
+  }
+]

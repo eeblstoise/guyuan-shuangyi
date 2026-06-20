@@ -1,0 +1,6 @@
+[
+  { "id": 1, "image": "images/factory/factory-1.jpg", "alt": "生产设备" },
+  { "id": 2, "image": "images/factory/factory-2.jpg", "alt": "加工车间" },
+  { "id": 3, "image": "images/factory/factory-3.jpg", "alt": "质量检测" },
+  { "id": 4, "image": "images/factory/factory-4.jpg", "alt": "仓储物流" }
+]
