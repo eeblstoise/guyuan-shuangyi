@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>沽源县双益农业发展有限公司 - 中国高寒地区马铃薯淀粉供应商</title>
+  <meta name="description" content="沽源县双益农业发展有限公司，集种植、收储、加工、销售于一体的现代农业产业化企业，专业马铃薯淀粉生产供应商。">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>
+    // ============================================
+    // Tailwind 配置：自定义主题色与动画
+    // ============================================
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              200: '#bbf7d0',
+              300: '#86efac',
+              400: '#4ade80',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',  // 主品牌绿
+              800: '#166534',
+              900: '#14532d',
+            }
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+            'count-up': 'countUp 2s ease-out forwards',
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(30px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* ============================================
+       自定义样式：轮播、滚动条、动画等
+       ============================================ */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .carousel-slide {
+      transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
+    }
+    .carousel-slide.active { opacity: 1; transform: translateX(0); }
+    .carousel-slide.prev { opacity: 0; transform: translateX(-100%); }
+    .carousel-slide.next { opacity: 0; transform: translateX(100%); }
+
+    .cert-carousel { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+    .cert-carousel > div { scroll-snap-align: center; }
+
+    .back-to-top {
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .back-to-top.hidden-btn { opacity: 0; transform: translateY(20px); pointer-events: none; }
+    .back-to-top.visible-btn { opacity: 1; transform: translateY(0); }
+
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -2px; left: 0;
+      width: 0; height: 2px; background: #15803d;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+    .stat-number { font-variant-numeric: tabular-nums; }
+
+    .product-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    .dark .product-card:hover {
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .step-item:hover .step-icon { transform: scale(1.1) rotate(5deg); }
+    .step-icon { transition: transform 0.3s ease; }
+
+    .img-zoom { overflow: hidden; }
+    .img-zoom img { transition: transform 0.5s ease; }
+    .img-zoom:hover img { transform: scale(1.08); }
+
+    .dark .hero-overlay { background: rgba(0,0,0,0.6); }
+    .light .hero-overlay { background: rgba(0,0,0,0.35); }
+
+    .map-placeholder {
+      background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    }
+    .dark .map-placeholder {
+      background: linear-gradient(135deg, #1b3a1b 0%, #0d2818 100%);
+    }
+
+    /* 留言表单样式 */
+    .form-input:focus {
+      outline: none;
+      border-color: #15803d;
+      box-shadow: 0 0 0 3px rgba(21,128,61,0.15);
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+
+  <!-- ============================================
+       导航栏：固定吸顶，包含Logo、菜单、电话、主题切换
+       ============================================ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <!-- Logo区域 -->
+        <a href="#" class="flex items-center gap-2 flex-shrink-0 group">
+          <div class="w-10 h-10 md:w-12 md:h-12 bg-primary-700 rounded-lg flex items-center justify-center group-hover:rotate-12 transition-transform">
+            <i class="fas fa-leaf text-white text-lg md:text-xl"></i>
+          </div>
+          <div class="hidden sm:block">
+            <h1 class="text-sm md:text-base font-bold text-gray-900 dark:text-white leading-tight">沽源县双益农业发展有限公司</h1>
+            <p class="text-xs text-gray-500 dark:text-gray-400">GUYUAN SHUANGYI AGRICULTURAL</p>
+          </div>
+        </a>
+
+        <!-- 桌面端导航菜单 -->
+        <div class="hidden lg:flex items-center gap-1">
+          <a href="#home" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-primary-700 dark:hover:text-primary-400 transition-colors">首页</a>
+          <a href="#about" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-primary-700 dark:hover:text-primary-400 transition-colors">关于我们</a>
+          <a href="#products" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-primary-700 dark:hover:text-primary-400 transition-colors">产品中心</a>
+          <a href="#strength" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-primary-700 dark:hover:text-primary-400 transition-colors">生产实力</a>
+          <a href="#quality" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-primary-700 dark:hover:text-primary-400 transition-colors">质量保障</a>
+          <a href="#news" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-primary-700 dark:hover:text-primary-400 transition-colors">新闻中心</a>
+          <a href="#contact" class="nav-link px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:text-primary-700 dark:hover:text-primary-400 transition-colors">联系我们</a>
+        </div>
+
+        <!-- 右侧：电话 + 主题切换 + 移动端汉堡按钮 -->
+        <div class="flex items-center gap-3">
+          <a href="tel:0313-XXXXXXX" class="hidden md:flex items-center gap-1.5 text-sm text-primary-700 dark:text-primary-400 font-medium hover:text-primary-800 transition-colors">
+            <i class="fas fa-phone-alt"></i>
+            <span>0313-XXXXXXX</span>
+          </a>
+          <button id="themeToggle" class="w-9 h-9 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" aria-label="切换主题">
+            <i class="fas fa-moon text-gray-600 dark:text-yellow-400 dark:hidden"></i>
+            <i class="fas fa-sun text-yellow-400 hidden dark:block"></i>
+          </button>
+          <button id="mobileMenuBtn" class="lg:hidden w-9 h-9 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:bg-gray-200 transition-colors" aria-label="打开菜单">
+            <i class="fas fa-bars text-gray-700 dark:text-gray-200"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 移动端下拉菜单 -->
+    <div id="mobileMenu" class="lg:hidden hidden bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
+      <div class="px-4 py-3 space-y-1">
+        <a href="#home" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-gray-800 hover:text-primary-700 transition-colors">首页</a>
+        <a href="#about" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-gray-800 hover:text-primary-700 transition-colors">关于我们</a>
+        <a href="#products" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-gray-800 hover:text-primary-700 transition-colors">产品中心</a>
+        <a href="#strength" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-gray-800 hover:text-primary-700 transition-colors">生产实力</a>
+        <a href="#quality" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-gray-800 hover:text-primary-700 transition-colors">质量保障</a>
+        <a href="#news" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-gray-800 hover:text-primary-700 transition-colors">新闻中心</a>
+        <a href="#contact" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-gray-800 hover:text-primary-700 transition-colors">联系我们</a>
+        <a href="tel:0313-XXXXXXX" class="flex items-center gap-2 px-3 py-2 text-primary-700 dark:text-primary-400 font-medium">
+          <i class="fas fa-phone-alt"></i>0313-XXXXXXX
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================
+       Hero 轮播大图区：3张幻灯片自动切换
+       ============================================ -->
+  <section id="home" class="relative h-[600px] md:h-[700px] lg:h-[800px] overflow-hidden pt-16 md:pt-20">
+    <div id="carousel" class="relative w-full h-full">
+      <!-- 幻灯片1 -->
+      <div class="carousel-slide active absolute inset-0 w-full h-full" data-slide="0">
+        <img src="https://picsum.photos/seed/guyuan1/1920/1080" alt="双益农业基地" class="w-full h-full object-cover">
+        <div class="hero-overlay absolute inset-0 light"></div>
+        <div class="absolute inset-0 flex items-center">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="max-w-2xl animate-fade-in-up">
+              <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-lg">双益农业</h2>
+              <p class="text-xl md:text-2xl lg:text-3xl text-white mb-4 font-light drop-shadow-md">中国高寒地区马铃薯淀粉供应商</p>
+              <p class="text-base md:text-lg text-white/90 mb-8 drop-shadow">集种植、收储、加工、销售于一体的现代农业产业化企业</p>
+              <div class="flex flex-wrap gap-4">
+                <a href="#about" class="px-6 py-3 bg-primary-700 hover:bg-primary-800 text-white font-medium rounded-lg transition-all hover:scale-105 shadow-lg">了解我们</a>
+                <a href="#products" class="px-6 py-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-medium rounded-lg border border-white/40 transition-all hover:scale-105">产品中心</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 幻灯片2 -->
+      <div class="carousel-slide next absolute inset-0 w-full h-full" data-slide="1">
+        <img src="https://picsum.photos/seed/guyuan2/1920/1080" alt="现代化生产线" class="w-full h-full object-cover">
+        <div class="hero-overlay absolute inset-0 light"></div>
+        <div class="absolute inset-0 flex items-center">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="max-w-2xl">
+              <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-lg">现代化生产线</h2>
+              <p class="text-xl md:text-2xl lg:text-3xl text-white mb-4 font-light drop-shadow-md">年加工能力10000吨+</p>
+              <p class="text-base md:text-lg text-white/90 mb-8 drop-shadow">引进国际先进设备，实现全程自动化控制，确保产品品质稳定</p>
+              <div class="flex flex-wrap gap-4">
+                <a href="#strength" class="px-6 py-3 bg-primary-700 hover:bg-primary-800 text-white font-medium rounded-lg transition-all hover:scale-105 shadow-lg">生产实力</a>
+                <a href="#quality" class="px-6 py-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-medium rounded-lg border border-white/40 transition-all hover:scale-105">品质保障</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 幻灯片3 -->
+      <div class="carousel-slide next absolute inset-0 w-full h-full" data-slide="2">
+        <img src="https://picsum.photos/seed/guyuan3/1920/1080" alt="绿色种植基地" class="w-full h-full object-cover">
+        <div class="hero-overlay absolute inset-0 light"></div>
+        <div class="absolute inset-0 flex items-center">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="max-w-2xl">
+              <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-lg">50000㎡生产基地</h2>
+              <p class="text-xl md:text-2xl lg:text-3xl text-white mb-4 font-light drop-shadow-md">优质原料，源头把控</p>
+              <p class="text-base md:text-lg text-white/90 mb-8 drop-shadow">自有高标准种植示范基地，从源头确保每一滴淀粉的纯净品质</p>
+              <div class="flex flex-wrap gap-4">
+                <a href="#contact" class="px-6 py-3 bg-primary-700 hover:bg-primary-800 text-white font-medium rounded-lg transition-all hover:scale-105 shadow-lg">联系我们</a>
+                <a href="#products" class="px-6 py-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-medium rounded-lg border border-white/40 transition-all hover:scale-105">了解产品</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 轮播左右箭头 -->
+      <button id="carouselPrev" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white flex items-center justify-center transition-all hover:scale-110 z-10" aria-label="上一张">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button id="carouselNext" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white flex items-center justify-center transition-all hover:scale-110 z-10" aria-label="下一张">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+
+      <!-- 轮播指示器 -->
+      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+        <button class="carousel-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all active" data-slide="0" aria-label="幻灯片1"></button>
+        <button class="carousel-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all" data-slide="1" aria-label="幻灯片2"></button>
+        <button class="carousel-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all" data-slide="2" aria-label="幻灯片3"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       数据统计栏：4项核心指标，带图标与动画
+       ============================================ -->
+  <section class="py-12 md:py-16 bg-white dark:bg-gray-900 relative z-10 -mt-2">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+        <div class="text-center group stat-item" data-target="50000" data-suffix="m²+">
+          <div class="w-14 h-14 md:w-16 md:h-16 mx-auto mb-3 rounded-full bg-primary-50 dark:bg-primary-900/30 flex items-center justify-center group-hover:bg-primary-100 dark:group-hover:bg-primary-900/50 transition-colors">
+            <i class="fas fa-industry text-primary-700 dark:text-primary-400 text-xl md:text-2xl"></i>
+          </div>
+          <div class="text-2xl md:text-3xl font-bold text-primary-700 dark:text-primary-400 mb-1">
+            <span class="stat-number">0</span><span class="stat-suffix">m²+</span>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-gray-400">生产基地</p>
+        </div>
+        <div class="text-center group stat-item" data-target="20" data-suffix="+">
+          <div class="w-14 h-14 md:w-16 md:h-16 mx-auto mb-3 rounded-full bg-primary-50 dark:bg-primary-900/30 flex items-center justify-center group-hover:bg-primary-100 dark:group-hover:bg-primary-900/50 transition-colors">
+            <i class="fas fa-handshake text-primary-700 dark:text-primary-400 text-xl md:text-2xl"></i>
+          </div>
+          <div class="text-2xl md:text-3xl font-bold text-primary-700 dark:text-primary-400 mb-1">
+            <span class="stat-number">0</span><span class="stat-suffix">+</span>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-gray-400">合作客户</p>
+        </div>
+        <div class="text-center group stat-item" data-target="10000" data-suffix="吨+">
+          <div class="w-14 h-14 md:w-16 md:h-16 mx-auto mb-3 rounded-full bg-primary-50 dark:bg-primary-900/30 flex items-center justify-center group-hover:bg-primary-100 dark:group-hover:bg-primary-900/50 transition-colors">
+            <i class="fas fa-cogs text-primary-700 dark:text-primary-400 text-xl md:text-2xl"></i>
+          </div>
+          <div class="text-2xl md:text-3xl font-bold text-primary-700 dark:text-primary-400 mb-1">
+            <span class="stat-number">0</span><span class="stat-suffix">吨+</span>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-gray-400">年加工能力</p>
+        </div>
+        <div class="text-center group stat-item" data-target="10" data-suffix="+">
+          <div class="w-14 h-14 md:w-16 md:h-16 mx-auto mb-3 rounded-full bg-primary-50 dark:bg-primary-900/30 flex items-center justify-center group-hover:bg-primary-100 dark:group-hover:bg-primary-900/50 transition-colors">
+            <i class="fas fa-award text-primary-700 dark:text-primary-400 text-xl md:text-2xl"></i>
+          </div>
+          <div class="text-2xl md:text-3xl font-bold text-primary-700 dark:text-primary-400 mb-1">
+            <span class="stat-number">0</span><span class="stat-suffix">+</span>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-gray-400">行业经验</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       关于我们：公司简介与优势
+       ============================================ -->
+  <section id="about" class="py-16 md:py-24 bg-primary-50 dark:bg-gray-800/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- 左侧：图片展示 -->
+        <div class="relative">
+          <div class="img-zoom rounded-2xl overflow-hidden shadow-xl">
+            <img src="https://picsum.photos/seed/about1/600/400" alt="公司基地" class="w-full h-64 md:h-80 object-cover">
+          </div>
+          <div class="absolute -bottom-6 -right-6 md:right-8 w-48 h-32 rounded-xl overflow-hidden shadow-lg border-4 border-white dark:border-gray-700 hidden sm:block">
+            <img src="https://picsum.photos/seed/about2/400/300" alt="生产车间" class="w-full h-full object-cover">
+          </div>
+        </div>
+        <!-- 右侧：文字内容 -->
+        <div>
+          <span class="text-primary-600 dark:text-primary-400 font-semibold text-sm uppercase tracking-wider">About Us</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-2 mb-6">关于双益农业</h2>
+          <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+            沽源县双益农业发展有限公司成立于2014年，位于河北省张家口市沽源县，是中国高寒地区领先的马铃薯淀粉生产供应商。公司依托坝上高原得天独厚的冷凉气候与肥沃土壤，建立50000平方米现代化生产基地。
+          </p>
+          <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+            我们坚持"从田间到餐桌"的全产业链品控理念，业务涵盖马铃薯种植、原料收储、精深加工、产品销售四大板块，产品广泛应用于食品加工、制药、纺织、造纸等多个工业领域。
+          </p>
+          <div class="grid grid-cols-2 gap-4 mb-6">
+            <div class="flex items-center gap-2">
+              <i class="fas fa-check-circle text-primary-600 dark:text-primary-400"></i>
+              <span class="text-sm text-gray-700 dark:text-gray-300">ISO9001质量认证</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fas fa-check-circle text-primary-600 dark:text-primary-400"></i>
+              <span class="text-sm text-gray-700 dark:text-gray-300">绿色食品认证</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fas fa-check-circle text-primary-600 dark:text-primary-400"></i>
+              <span class="text-sm text-gray-700 dark:text-gray-300">HACCP体系认证</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fas fa-check-circle text-primary-600 dark:text-primary-400"></i>
+              <span class="text-sm text-gray-700 dark:text-gray-300">有机种植基地</span>
+            </div>
+          </div>
+          <a href="#strength" class="inline-flex items-center gap-2 text-primary-700 dark:text-primary-400 font-medium hover:gap-3 transition-all">
+            了解更多 <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       产品中心：3个产品卡片，含图标与描述
+       ============================================ -->
+  <section id="products" class="py-16 md:py-24 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- 标题区 -->
+      <div class="text-center mb-12 md:mb-16">
+        <span class="text-primary-600 dark:text-primary-400 font-semibold text-sm uppercase tracking-wider">Product Center</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-2">产品中心</h2>
+        <div class="w-16 h-1 bg-primary-600 mx-auto mt-4 rounded-full"></div>
+      </div>
+      <!-- 产品卡片网格 -->
+      <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+        <!-- 产品1：马铃薯淀粉 -->
+        <div class="product-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md border border-gray-100 dark:border-gray-700">
+          <div class="img-zoom h-52 md:h-56">
+            <img src="https://picsum.photos/seed/product1/600/400" alt="马铃薯淀粉" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <div class="w-12 h-12 rounded-full bg-primary-50 dark:bg-primary-900/30 flex items-center justify-center mb-4">
+              <i class="fas fa-wheat-awn text-primary-700 dark:text-primary-400 text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">马铃薯淀粉</h3>
+            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4">
+              广泛应用于食品加工、粉条、速冻食品、调味品等领域，白度高、粘度高、糊化温度低，品质稳定可靠。
+            </p>
+            <a href="#contact" class="inline-flex items-center gap-1 text-primary-700 dark:text-primary-400 text-sm font-medium hover:gap-2 transition-all">
+              了解更多 <i class="fas fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+        </div>
+        <!-- 产品2：工业淀粉 -->
+        <div class="product-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md border border-gray-100 dark:border-gray-700">
+          <div class="img-zoom h-52 md:h-56">
+            <img src="https://picsum.photos/seed/product2/600/400" alt="工业淀粉" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <div class="w-12 h-12 rounded-full bg-primary-50 dark:bg-primary-900/30 flex items-center justify-center mb-4">
+              <i class="fas fa-industry text-primary-700 dark:text-primary-400 text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">工业淀粉</h3>
+            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4">
+              适用于造纸、纺织、制药、化工等工业领域，可根据客户需求定制粘度、白度、细度等技术指标。
+            </p>
+            <a href="#contact" class="inline-flex items-center gap-1 text-primary-700 dark:text-primary-400 text-sm font-medium hover:gap-2 transition-all">
+              了解更多 <i class="fas fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+        </div>
+        <!-- 产品3：定制加工 -->
+        <div class="product-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md border border-gray-100 dark:border-gray-700">
+          <div class="img-zoom h-52 md:h-56">
+            <img src="https://picsum.photos/seed/product3/600/400" alt="定制加工" class="w-full h-full object-cover">
+          </div>
+          <div class="p-6">
+            <div class="w-12 h-12 rounded-full bg-primary-50 dark:bg-primary-900/30 flex items-center justify-center mb-4">
+              <i class="fas fa-cogs text-primary-700 dark:text-primary-400 text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">定制加工</h3>
+            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4">
+              提供OEM、ODM服务，满足客户个性化需求。支持不同包装规格、技术指标定制，灵活配合订单生产。
+            </p>
+            <a href="#contact" class="inline-flex items-center gap-1 text-primary-700 dark:text-primary-400 text-sm font-medium hover:gap-2 transition-all">
+              了解更多 <i class="fas fa-arrow-right text-xs"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       生产实力：6步骤流程 + 4张工厂图
+       ============================================ -->
+  <section id="strength" class="py-16 md:py-24 bg-primary-50 dark:bg-gray-800/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- 标题区 -->
+      <div class="text-center mb-12 md:mb-16">
+        <span class="text-primary-600 dark:text-primary-400 font-semibold text-sm uppercase tracking-wider">Production Strength</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-2">生产实力</h2>
+        <div class="w-16 h-1 bg-primary-600 mx-auto mt-4 rounded-full"></div>
+      </div>
+      <!-- 6步流程 -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-4 mb-12 md:mb-16">
+        <!-- 步骤1 -->
+        <div class="step-item text-center group">
+          <div class="relative inline-block mb-3">
+            <span class="absolute -top-2 -left-2 w-6 h-6 rounded-full bg-primary-700 text-white text-xs flex items-center justify-center font-bold">01</span>
+            <div class="step-icon w-16 h-16 md:w-20 md:h-20 rounded-full bg-white dark:bg-gray-800 shadow-md flex items-center justify-center mx-auto border-2 border-primary-100 dark:border-primary-900/50">
+              <i class="fas fa-seedling text-primary-700 dark:text-primary-400 text-xl md:text-2xl"></i>
+            </div>
+          </div>
+          <h4 class="font-bold text-gray-900 dark:text-white mb-1">原料种植</h4>
+          <p class="text-xs text-gray-500 dark:text-gray-400">优质马铃薯种植基地<br>源头把控品质</p>
+        </div>
+        <!-- 步骤2 -->
+        <div class="step-item text-center group">
+          <div class="relative inline-block mb-3">
+            <span class="absolute -top-2 -left-2 w-6 h-6 rounded-full bg-primary-700 text-white text-xs flex items-center justify-center font-bold">02</span>
+            <div class="step-icon w-16 h-16 md:w-20 md:h-20 rounded-full bg-white dark:bg-gray-800 shadow-md flex items-center justify-center mx-auto border-2 border-primary-100 dark:border-primary-900/50">
+              <i class="fas fa-truck text-primary-700 dark:text-primary-400 text-xl md:text-2xl"></i>
+            </div>
+          </div>
+          <h4 class="font-bold text-gray-900 dark:text-white mb-1">收储运输</h4>
+          <p class="text-xs text-gray-500 dark:text-gray-400">科学仓储保鲜<br>确保原料新鲜</p>
+        </div>
+        <!-- 步骤3 -->
+        <div class="step-item text-center group">
+          <div class="relative inline-block mb-3">
+            <span class="absolute -top-2 -left-2 w-6 h-6 rounded-full bg-primary-700 text-white text-xs flex items-center justify-center font-bold">03</span>
+            <div class="step-icon w-16 h-16 md:w-20 md:h-20 rounded-full bg-white dark:bg-gray-800 shadow-md flex items-center justify-center mx-auto border-2 border-primary-100 dark:border-primary-900/50">
+              <i class="fas fa-tint text-primary-700 dark:text-primary-400 text-xl md:text-2xl"></i>
+            </div>
+          </div>
+          <h4 class="font-bold text-gray-900 dark:text-white mb-1">清洗加工</h4>
+          <p class="text-xs text-gray-500 dark:text-gray-400">先进生产线<br>清洗破碎提取淀粉</p>
+        </div>
+        <!-- 步骤4 -->
+        <div class="step-item text-center group">
+          <div class="relative inline-block mb-3">
+            <span class="absolute -top-2 -left-2 w-6 h-6 rounded-full bg-primary-700 text-white text-xs flex items-center justify-center font-bold">04</span>
+            <div class="step-icon w-16 h-16 md:w-20 md:h-20 rounded-full bg-white dark:bg-gray-800 shadow-md flex items-center justify-center mx-auto border-2 border-primary-100 dark:border-primary-900/50">
+              <i class="fas fa-flask text-primary-700 dark:text-primary-400 text-xl md:text-2xl"></i>
+            </div>
+          </div>
+          <h4 class="font-bold text-gray-900 dark:text-white mb-1">精制检测</h4>
+          <p class="text-xs text-gray-500 dark:text-gray-400">精制提纯工艺<br>严格质量检测</p>
+        </div>
+        <!-- 步骤5 -->
+        <div class="step-item text-center group">
+          <div class="relative inline-block mb-3">
+            <span class="absolute -top-2 -left-2 w-6 h-6 rounded-full bg-primary-700 text-white text-xs flex items-center justify-center font-bold">05</span>
+            <div class="step-icon w-16 h-16 md:w-20 md:h-20 rounded-full bg-white dark:bg-gray-800 shadow-md flex items-center justify-center mx-auto border-2 border-primary-100 dark:border-primary-900/50">
+              <i class="fas fa-box text-primary-700 dark:text-primary-400 text-xl md:text-2xl"></i>
+            </div>
+          </div>
+          <h4 class="font-bold text-gray-900 dark:text-white mb-1">包装入库</h4>
+          <p class="text-xs text-gray-500 dark:text-gray-400">自动化包装<br>规范入库管理</p>
+        </div>
+        <!-- 步骤6 -->
+        <div class="step-item text-center group">
+          <div class="relative inline-block mb-3">
+            <span class="absolute -top-2 -left-2 w-6 h-6 rounded-full bg-primary-700 text-white text-xs flex items-center justify-center font-bold">06</span>
+            <div class="step-icon w-16 h-16 md:w-20 md:h-20 rounded-full bg-white dark:bg-gray-800 shadow-md flex items-center justify-center mx-auto border-2 border-primary-100 dark:border-primary-900/50">
+              <i class="fas fa-shipping-fast text-primary-700 dark:text-primary-400 text-xl md:text-2xl"></i>
+            </div>
+          </div>
+          <h4 class="font-bold text-gray-900 dark:text-white mb-1">物流配送</h4>
+          <p class="text-xs text-gray-500 dark:text-gray-400">快速响应订单<br>安全高效送达</p>
+        </div>
+      </div>
+      <!-- 4张工厂图片 -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="img-zoom rounded-xl overflow-hidden shadow-md aspect-[4/3]">
+          <img src="https://picsum.photos/seed/factory1/500/400" alt="生产设备" class="w-full h-full object-cover">
+        </div>
+        <div class="img-zoom rounded-xl overflow-hidden shadow-md aspect-[4/3]">
+          <img src="https://picsum.photos/seed/factory2/500/400" alt="加工车间" class="w-full h-full object-cover">
+        </div>
+        <div class="img-zoom rounded-xl overflow-hidden shadow-md aspect-[4/3]">
+          <img src="https://picsum.photos/seed/factory3/500/400" alt="质量检测" class="w-full h-full object-cover">
+        </div>
+        <div class="img-zoom rounded-xl overflow-hidden shadow-md aspect-[4/3]">
+          <img src="https://picsum.photos/seed/factory4/500/400" alt="仓储物流" class="w-full h-full object-cover">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       品质保障：5个证书资质，支持横向滚动
+       ============================================ -->
+  <section id="quality" class="py-16 md:py-24 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- 标题区 -->
+      <div class="text-center mb-12 md:mb-16">
+        <span class="text-primary-600 dark:text-primary-400 font-semibold text-sm uppercase tracking-wider">Quality Assurance</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-2">品质保障</h2>
+        <div class="w-16 h-1 bg-primary-600 mx-auto mt-4 rounded-full"></div>
+      </div>
+      <!-- 证书横向滚动容器 -->
+      <div class="cert-carousel flex gap-6 overflow-x-auto no-scrollbar pb-4 px-2 md:px-0">
+        <!-- 证书1 -->
+        <div class="flex-shrink-0 w-60 md:w-72 text-center group">
+          <div class="img-zoom rounded-xl overflow-hidden shadow-md border border-gray-100 dark:border-gray-700 mb-4 aspect-[3/4] bg-gray-50 dark:bg-gray-800">
+            <img src="https://picsum.photos/seed/cert1/400/500" alt="食品生产许可证" class="w-full h-full object-cover">
+          </div>
+          <h4 class="font-bold text-gray-900 dark:text-white mb-1">食品生产许可证</h4>
+          <p class="text-xs text-gray-500 dark:text-gray-400">SC认证，安全合规</p>
+        </div>
+        <!-- 证书2 -->
+        <div class="flex-shrink-0 w-60 md:w-72 text-center group">
+          <div class="img-zoom rounded-xl overflow-hidden shadow-md border border-gray-100 dark:border-gray-700 mb-4 aspect-[3/4] bg-gray-50 dark:bg-gray-800">
+            <img src="https://picsum.photos/seed/cert2/400/500" alt="质量管理体系认证" class="w-full h-full object-cover">
+          </div>
+          <h4 class="font-bold text-gray-900 dark:text-white mb-1">质量管理体系认证</h4>
+          <p class="text-xs text-gray-500 dark:text-gray-400">ISO 9001:2015</p>
+        </div>
+        <!-- 证书3 -->
+        <div class="flex-shrink-0 w-60 md:w-72 text-center group">
+          <div class="img-zoom rounded-xl overflow-hidden shadow-md border border-gray-100 dark:border-gray-700 mb-4 aspect-[3/4] bg-gray-50 dark:bg-gray-800">
+            <img src="https://picsum.photos/seed/cert3/400/500" alt="环境管理体系认证" class="w-full h-full object-cover">
+          </div>
+          <h4 class="font-bold text-gray-900 dark:text-white mb-1">环境管理体系认证</h4>
+          <p class="text-xs text-gray-500 dark:text-gray-400">ISO 14001:2015</p>
+        </div>
+        <!-- 证书4 -->
+        <div class="flex-shrink-0 w-60 md:w-72 text-center group">
+          <div class="img-zoom rounded-xl overflow-hidden shadow-md border border-gray-100 dark:border-gray-700 mb-4 aspect-[3/4] bg-gray-50 dark:bg-gray-800">
+            <img src="https://picsum.photos/seed/cert4/400/500" alt="职业健康安全管理体系认证" class="w-full h-full object-cover">
+          </div>
+          <h4 class="font-bold text-gray-900 dark:text-white mb-1">职业健康安全管理体系认证</h4>
+          <p class="text-xs text-gray-500 dark:text-gray-400">ISO 45001:2018</p>
+        </div>
+        <!-- 证书5 -->
+        <div class="flex-shrink-0 w-60 md:w-72 text-center group">
+          <div class="img-zoom rounded-xl overflow-hidden shadow-md border border-gray-100 dark:border-gray-700 mb-4 aspect-[3/4] bg-gray-50 dark:bg-gray-800">
+            <img src="https://picsum.photos/seed/cert5/400/500" alt="企业荣誉证书" class="w-full h-full object-cover">
+          </div>
+          <h4 class="font-bold text-gray-900 dark:text-white mb-1">企业荣誉证书</h4>
+          <p class="text-xs text-gray-500 dark:text-gray-400">农业产业化龙头企业</p>
+        </div>
+      </div>
+      <!-- 移动端滚动提示 -->
+      <p class="text-center text-xs text-gray-400 mt-2 md:hidden"><i class="fas fa-arrows-left-right mr-1"></i>左右滑动查看更多</p>
+    </div>
+  </section>
+
+  <!-- ============================================
+       新闻中心：3栏新闻列表（企业动态/行业资讯/马铃薯知识）
+       ============================================ -->
+  <section id="news" class="py-16 md:py-24 bg-primary-50 dark:bg-gray-800/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- 标题区 -->
+      <div class="text-center mb-12 md:mb-16">
+        <span class="text-primary-600 dark:text-primary-400 font-semibold text-sm uppercase tracking-wider">News Center</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-2">新闻中心</h2>
+        <div class="w-16 h-1 bg-primary-600 mx-auto mt-4 rounded-full"></div>
+      </div>
+      <!-- 3栏新闻 -->
+      <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+        <!-- 企业动态 -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md border border-gray-100 dark:border-gray-700">
+          <div class="flex items-center justify-between mb-4 pb-3 border-b border-gray-100 dark:border-gray-700">
+            <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
+              <i class="fas fa-building text-primary-600 dark:text-primary-400"></i> 企业动态
+            </h3>
+            <a href="#" class="text-xs text-primary-600 dark:text-primary-400 hover:underline">更多 &rarr;</a>
+          </div>
+          <ul class="space-y-3">
+            <li class="group">
+              <a href="#" class="flex items-start justify-between gap-2 hover:bg-primary-50 dark:hover:bg-gray-700/50 p-2 rounded-lg transition-colors">
+                <span class="text-sm text-gray-700 dark:text-gray-300 group-hover:text-primary-700 dark:group-hover:text-primary-400 transition-colors">双益农业新生产线正式投产</span>
+                <span class="text-xs text-gray-400 flex-shrink-0 mt-0.5">2024-05-20</span>
+              </a>
+            </li>
+            <li class="group">
+              <a href="#" class="flex items-start justify-between gap-2 hover:bg-primary-50 dark:hover:bg-gray-700/50 p-2 rounded-lg transition-colors">
+                <span class="text-sm text-gray-700 dark:text-gray-300 group-hover:text-primary-700 dark:group-hover:text-primary-400 transition-colors">公司参加农产品加工行业交流会</span>
+                <span class="text-xs text-gray-400 flex-shrink-0 mt-0.5">2024-04-15</span>
+              </a>
+            </li>
+            <li class="group">
+              <a href="#" class="flex items-start justify-between gap-2 hover:bg-primary-50 dark:hover:bg-gray-700/50 p-2 rounded-lg transition-colors">
+                <span class="text-sm text-gray-700 dark:text-gray-300 group-hover:text-primary-700 dark:group-hover:text-primary-400 transition-colors">双益农业荣获"诚信企业"称号</span>
+                <span class="text-xs text-gray-400 flex-shrink-0 mt-0.5">2024-03-28</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- 行业资讯 -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md border border-gray-100 dark:border-gray-700">
+          <div class="flex items-center justify-between mb-4 pb-3 border-b border-gray-100 dark:border-gray-700">
+            <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
+              <i class="fas fa-newspaper text-primary-600 dark:text-primary-400"></i> 行业资讯
+            </h3>
+            <a href="#" class="text-xs text-primary-600 dark:text-primary-400 hover:underline">更多 &rarr;</a>
+          </div>
+          <ul class="space-y-3">
+            <li class="group">
+              <a href="#" class="flex items-start justify-between gap-2 hover:bg-primary-50 dark:hover:bg-gray-700/50 p-2 rounded-lg transition-colors">
+                <span class="text-sm text-gray-700 dark:text-gray-300 group-hover:text-primary-700 dark:group-hover:text-primary-400 transition-colors">马铃薯淀粉行业市场分析报告</span>
+                <span class="text-xs text-gray-400 flex-shrink-0 mt-0.5">2024-05-18</span>
+              </a>
+            </li>
+            <li class="group">
+              <a href="#" class="flex items-start justify-between gap-2 hover:bg-primary-50 dark:hover:bg-gray-700/50 p-2 rounded-lg transition-colors">
+                <span class="text-sm text-gray-700 dark:text-gray-300 group-hover:text-primary-700 dark:group-hover:text-primary-400 transition-colors">淀粉加工技术发展趋势</span>
+                <span class="text-xs text-gray-400 flex-shrink-0 mt-0.5">2024-04-10</span>
+              </a>
+            </li>
+            <li class="group">
+              <a href="#" class="flex items-start justify-between gap-2 hover:bg-primary-50 dark:hover:bg-gray-700/50 p-2 rounded-lg transition-colors">
+                <span class="text-sm text-gray-700 dark:text-gray-300 group-hover:text-primary-700 dark:group-hover:text-primary-400 transition-colors">国家政策支持农业产业化发展</span>
+                <span class="text-xs text-gray-400 flex-shrink-0 mt-0.5">2024-03-22</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- 马铃薯知识 -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md border border-gray-100 dark:border-gray-700">
+          <div class="flex items-center justify-between mb-4 pb-3 border-b border-gray-100 dark:border-gray-700">
+            <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
+              <i class="fas fa-book-open text-primary-600 dark:text-primary-400"></i> 马铃薯知识
+            </h3>
+            <a href="#" class="text-xs text-primary-600 dark:text-primary-400 hover:underline">更多 &rarr;</a>
+          </div>
+          <ul class="space-y-3">
+            <li class="group">
+              <a href="#" class="flex items-start justify-between gap-2 hover:bg-primary-50 dark:hover:bg-gray-700/50 p-2 rounded-lg transition-colors">
+                <span class="text-sm text-gray-700 dark:text-gray-300 group-hover:text-primary-700 dark:group-hover:text-primary-400 transition-colors">马铃薯的营养价值与功效</span>
+                <span class="text-xs text-gray-400 flex-shrink-0 mt-0.5">2024-05-12</span>
+              </a>
+            </li>
+            <li class="group">
+              <a href="#" class="flex items-start justify-between gap-2 hover:bg-primary-50 dark:hover:bg-gray-700/50 p-2 rounded-lg transition-colors">
+                <span class="text-sm text-gray-700 dark:text-gray-300 group-hover:text-primary-700 dark:group-hover:text-primary-400 transition-colors">如何挑选优质马铃薯</span>
+                <span class="text-xs text-gray-400 flex-shrink-0 mt-0.5">2024-04-05</span>
+              </a>
+            </li>
+            <li class="group">
+              <a href="#" class="flex items-start justify-between gap-2 hover:bg-primary-50 dark:hover:bg-gray-700/50 p-2 rounded-lg transition-colors">
+                <span class="text-sm text-gray-700 dark:text-gray-300 group-hover:text-primary-700 dark:group-hover:text-primary-400 transition-colors">马铃薯种植技术要点</span>
+                <span class="text-xs text-gray-400 flex-shrink-0 mt-0.5">2024-03-18</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       联系我们：联系方式 + 地图 + 留言表单 + 二维码
+       ============================================ -->
+  <section id="contact" class="py-16 md:py-24 bg-white dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- 标题区 -->
+      <div class="text-center mb-12 md:mb-16">
+        <span class="text-primary-600 dark:text-primary-400 font-semibold text-sm uppercase tracking-wider">Contact Us</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-2">联系我们</h2>
+        <div class="w-16 h-1 bg-primary-600 mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8 lg:gap-12">
+        <!-- 左侧：联系方式 -->
+        <div class="space-y-6">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-map-marker-alt text-primary-700 dark:text-primary-400"></i>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white mb-1">公司地址</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400">河北省张家口市沽源县经济开发区北区</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-phone text-primary-700 dark:text-primary-400"></i>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white mb-1">联系电话</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400">0313-XXXXXXX</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-envelope text-primary-700 dark:text-primary-400"></i>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white mb-1">电子邮箱</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400">shuangyi@shuangyiny.com</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-primary-50 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-clock text-primary-700 dark:text-primary-400"></i>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white mb-1">工作时间</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400">周一至周六 8:00-17:30</p>
+            </div>
+          </div>
+
+          <!-- 二维码区 -->
+          <div class="pt-4 border-t border-gray-100 dark:border-gray-700">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="text-center">
+                <div class="w-24 h-24 mx-auto rounded-lg bg-gray-100 dark:bg-gray-800 p-2 mb-2">
+                  <img src="https://picsum.photos/seed/qrcode1/200/200" alt="关注公众号" class="w-full h-full object-cover rounded">
+                </div>
+                <p class="text-xs text-gray-500 dark:text-gray-400">关注公众号</p>
+              </div>
+              <div class="text-center">
+                <div class="w-24 h-24 mx-auto rounded-lg bg-gray-100 dark:bg-gray-800 p-2 mb-2">
+                  <img src="https://picsum.photos/seed/qrcode2/200/200" alt="关注视频号" class="w-full h-full object-cover rounded">
+                </div>
+                <p class="text-xs text-gray-500 dark:text-gray-400">关注视频号</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 中间：地图占位 -->
+        <div class="lg:col-span-1">
+          <div class="map-placeholder rounded-xl h-64 lg:h-full min-h-[300px] flex items-center justify-center relative overflow-hidden">
+            <div class="text-center z-10">
+              <div class="w-12 h-12 rounded-full bg-primary-600 flex items-center justify-center mx-auto mb-3">
+                <i class="fas fa-map-marker-alt text-white text-xl"></i>
+              </div>
+              <h4 class="font-bold text-primary-800 dark:text-primary-300 mb-1">沽源县双益农业发展有限公司</h4>
+              <p class="text-sm text-primary-700 dark:text-primary-400">河北省张家口市沽源县</p>
+            </div>
+            <!-- 装饰地图网格 -->
+            <div class="absolute inset-0 opacity-20">
+              <div class="w-full h-full" style="background-image: radial-gradient(circle, #15803d 1px, transparent 1px); background-size: 20px 20px;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右侧：留言表单 -->
+        <div class="bg-primary-50 dark:bg-gray-800/50 rounded-xl p-6 md:p-8 border border-primary-100 dark:border-gray-700">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">在线留言</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-6">填写下方信息，我们会尽快与您联系</p>
+          <form id="contactForm" class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">您的姓名 <span class="text-red-500">*</span></label>
+              <input type="text" name="name" required class="form-input w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm transition-all" placeholder="请输入您的姓名">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">联系电话 <span class="text-red-500">*</span></label>
+              <input type="tel" name="phone" required class="form-input w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm transition-all" placeholder="请输入您的电话">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">电子邮箱</label>
+              <input type="email" name="email" class="form-input w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm transition-all" placeholder="请输入您的邮箱（选填）">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">留言内容 <span class="text-red-500">*</span></label>
+              <textarea name="message" rows="4" required class="form-input w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm transition-all resize-none" placeholder="请输入您想咨询的内容"></textarea>
+            </div>
+            <button type="submit" class="w-full py-3 bg-primary-700 hover:bg-primary-800 text-white font-medium rounded-lg transition-all hover:shadow-lg flex items-center justify-center gap-2">
+              <i class="fas fa-paper-plane"></i> 提交留言
+            </button>
+          </form>
+          <!-- 提交成功提示（默认隐藏） -->
+          <div id="formSuccess" class="hidden mt-4 p-4 bg-green-50 dark:bg-green-900/30 rounded-lg border border-green-200 dark:border-green-800">
+            <div class="flex items-center gap-2">
+              <i class="fas fa-check-circle text-green-600 dark:text-green-400"></i>
+              <p class="text-sm text-green-700 dark:text-green-300">提交成功！我们会尽快与您联系。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       页脚：版权信息、备案号、技术支持
+       ============================================ -->
+  <footer class="bg-gray-900 text-gray-300 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
+        <div class="text-center md:text-left">
+          <p>&copy; 2024 沽源县双益农业发展有限公司 版权所有</p>
+          <p class="text-gray-500 mt-1">冀ICP备XXXXXXXX号-1</p>
+        </div>
+        <div class="text-center md:text-right">
+          <p>技术支持：XXXXXX</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================
+       返回顶部按钮：滚动超过300px时显示
+       ============================================ -->
+  <button id="backToTop" class="back-to-top hidden-btn fixed bottom-6 right-6 w-12 h-12 bg-primary-700 hover:bg-primary-800 text-white rounded-full shadow-lg flex items-center justify-center z-50 transition-all hover:scale-110" aria-label="返回顶部">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+
+  <!-- ============================================
+       JavaScript：所有交互逻辑
+       ============================================ -->
+  <script>
+    (function() {
+      'use strict';
+
+      // ============================================
+      // 1. 深色/浅色主题切换
+      // ============================================
+      const themeToggle = document.getElementById('themeToggle');
+      const html = document.documentElement;
+
+      // 读取本地存储或系统偏好
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        html.classList.add('dark');
+      } else {
+        html.classList.remove('dark');
+      }
+
+      themeToggle.addEventListener('click', () => {
+        html.classList.toggle('dark');
+        localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+      });
+
+      // ============================================
+      // 2. 移动端汉堡菜单展开/收起
+      // ============================================
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      let menuOpen = false;
+
+      mobileMenuBtn.addEventListener('click', () => {
+        menuOpen = !menuOpen;
+        mobileMenu.classList.toggle('hidden', !menuOpen);
+        mobileMenuBtn.innerHTML = menuOpen
+          ? '<i class="fas fa-times text-gray-700 dark:text-gray-200"></i>'
+          : '<i class="fas fa-bars text-gray-700 dark:text-gray-200"></i>';
+      });
+
+      // 点击菜单项后自动关闭
+      document.querySelectorAll('.mobile-link').forEach(link => {
+        link.addEventListener('click', () => {
+          menuOpen = false;
+          mobileMenu.classList.add('hidden');
+          mobileMenuBtn.innerHTML = '<i class="fas fa-bars text-gray-700 dark:text-gray-200"></i>';
+        });
+      });
+
+      // ============================================
+      // 3. Hero轮播图逻辑：自动播放 + 手动切换
+      // ============================================
+      const slides = document.querySelectorAll('.carousel-slide');
+      const dots = document.querySelectorAll('.carousel-dot');
+      const prevBtn = document.getElementById('carouselPrev');
+      const nextBtn = document.getElementById('carouselNext');
+      let currentSlide = 0;
+      let slideInterval;
+      const totalSlides = slides.length;
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.remove('active', 'prev', 'next');
+          if (i === index) {
+            slide.classList.add('active');
+          } else if (i < index) {
+            slide.classList.add('prev');
+          } else {
+            slide.classList.add('next');
+          }
+        });
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('bg-white', i === index);
+          dot.classList.toggle('bg-white/50', i !== index);
+          dot.classList.toggle('scale-125', i === index);
+        });
+        currentSlide = index;
+      }
+
+      function nextSlide() {
+        showSlide((currentSlide + 1) % totalSlides);
+      }
+      function prevSlide() {
+        showSlide((currentSlide - 1 + totalSlides) % totalSlides);
+      }
+
+      function startAutoplay() {
+        slideInterval = setInterval(nextSlide, 5000);
+      }
+      function stopAutoplay() {
+        clearInterval(slideInterval);
+      }
+
+      // 按钮点击
+      nextBtn.addEventListener('click', () => { stopAutoplay(); nextSlide(); startAutoplay(); });
+      prevBtn.addEventListener('click', () => { stopAutoplay(); prevSlide(); startAutoplay(); });
+
+      // 指示器点击
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => { stopAutoplay(); showSlide(i); startAutoplay(); });
+      });
+
+      // 鼠标悬停暂停
+      const carousel = document.getElementById('carousel');
+      carousel.addEventListener('mouseenter', stopAutoplay);
+      carousel.addEventListener('mouseleave', startAutoplay);
+
+      startAutoplay();
+
+      // ============================================
+      // 4. 统计数字滚动动画：IntersectionObserver触发
+      // ============================================
+      const statItems = document.querySelectorAll('.stat-item');
+      const statObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const item = entry.target;
+            const target = parseInt(item.dataset.target);
+            const numEl = item.querySelector('.stat-number');
+            const duration = 2000; // 2秒
+            const start = performance.now();
+
+            function animate(now) {
+              const elapsed = now - start;
+              const progress = Math.min(elapsed / duration, 1);
+              // easeOutQuart
+              const ease = 1 - Math.pow(1 - progress, 4);
+              const current = Math.floor(ease * target);
+              numEl.textContent = current.toLocaleString();
+              if (progress < 1) requestAnimationFrame(animate);
+            }
+            requestAnimationFrame(animate);
+            statObserver.unobserve(item);
+          }
+        });
+      }, { threshold: 0.5 });
+      statItems.forEach(item => statObserver.observe(item));
+
+      // ============================================
+      // 5. 滚动监听：导航栏阴影、返回顶部、导航高亮
+      // ============================================
+      const navbar = document.getElementById('navbar');
+      const backToTop = document.getElementById('backToTop');
+      const navLinks = document.querySelectorAll('.nav-link');
+      const sections = document.querySelectorAll('section[id]');
+
+      function onScroll() {
+        const scrollY = window.scrollY;
+
+        // 导航栏阴影
+        navbar.classList.toggle('shadow-md', scrollY > 10);
+
+        // 返回顶部按钮
+        backToTop.classList.toggle('visible-btn', scrollY > 300);
+        backToTop.classList.toggle('hidden-btn', scrollY <= 300);
+
+        // 导航高亮
+        sections.forEach(section => {
+          const top = section.offsetTop - 120;
+          const height = section.offsetHeight;
+          if (scrollY >= top && scrollY < top + height) {
+            const id = section.getAttribute('id');
+            navLinks.forEach(link => {
+              link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+              link.classList.toggle('text-primary-700', link.getAttribute('href') === '#' + id);
+              link.classList.toggle('dark:text-primary-400', link.getAttribute('href') === '#' + id);
+            });
+          }
+        });
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      // 返回顶部点击
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // ============================================
+      // 6. 平滑滚动：所有锚点链接
+      // ============================================
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href === '#') return;
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            const offset = target.offsetTop - 80;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+          }
+        });
+      });
+
+      // ============================================
+      // 7. 留言表单提交：前端验证 + 模拟提交
+      // ============================================
+      const contactForm = document.getElementById('contactForm');
+      const formSuccess = document.getElementById('formSuccess');
+
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(contactForm);
+        const name = formData.get('name').trim();
+        const phone = formData.get('phone').trim();
+        const message = formData.get('message').trim();
+
+        if (!name || !phone || !message) {
+          alert('请填写必填项（姓名、电话、留言内容）');
+          return;
+        }
+
+        // 手机号简单验证
+        const phoneRegex = /^1[3-9]\d{9}$|^0\d{2,3}-?\d{7,8}$/;
+        if (!phoneRegex.test(phone)) {
+          alert('请输入有效的电话号码');
+          return;
+        }
+
+        // 模拟提交成功
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 提交中...';
+        submitBtn.disabled = true;
+
+        setTimeout(() => {
+          contactForm.reset();
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+          formSuccess.classList.remove('hidden');
+          setTimeout(() => formSuccess.classList.add('hidden'), 5000);
+        }, 1500);
+      });
+
+      // ============================================
+      // 8. 证书区触摸滑动支持（增强移动端体验）
+      // ============================================
+      const certCarousel = document.querySelector('.cert-carousel');
+      if (certCarousel) {
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        certCarousel.addEventListener('mousedown', (e) => {
+          isDown = true;
+          startX = e.pageX - certCarousel.offsetLeft;
+          scrollLeft = certCarousel.scrollLeft;
+        });
+        certCarousel.addEventListener('mouseleave', () => isDown = false);
+        certCarousel.addEventListener('mouseup', () => isDown = false);
+        certCarousel.addEventListener('mousemove', (e) => {
+          if (!isDown) return;
+          e.preventDefault();
+          const x = e.pageX - certCarousel.offsetLeft;
+          const walk = (x - startX) * 2;
+          certCarousel.scrollLeft = scrollLeft - walk;
+        });
+      }
+
+    })();
+  </script>
+</body>
+</html>
