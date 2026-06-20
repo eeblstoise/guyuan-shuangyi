@@ -11,7 +11,7 @@
     "id": 2,
     "name": "工业淀粉",
     "icon": "fa-industry",
-    "description": "适用于造纸、纺织、制药、化工等工业领域，可根据客户需求定制粘度、白度、细度等技术指标。",
+    "description": "适用于造纸、纺织、制药、化工等工业领域1，可根据客户需求定制粘度、白度、细度等技术指标。",
     "image": "images/products/product-industrial.jpg",
     "link": "#contact"
   },
