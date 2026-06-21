@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.carousel-slide { transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out; }
+.carousel-slide.active { opacity: 1; transform: translateX(0); }
+.carousel-slide.prev { opacity: 0; transform: translateX(-100%); }
+.carousel-slide.next { opacity: 0; transform: translateX(100%); }
+
+.cert-carousel { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+.cert-carousel > div { scroll-snap-align: center; }
+
+.back-to-top { transition: opacity 0.3s, transform 0.3s; }
+.back-to-top.hidden-btn { opacity: 0; transform: translateY(20px); pointer-events: none; }
+.back-to-top.visible-btn { opacity: 1; transform: translateY(0); }
+
+.nav-link { position: relative; }
+.nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: #15803d; transition: width 0.3s ease; }
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+.stat-number { font-variant-numeric: tabular-nums; }
+
+.product-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+.dark .product-card:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+
+.step-item:hover .step-icon { transform: scale(1.1) rotate(5deg); }
+.step-icon { transition: transform 0.3s ease; }
+
+.img-zoom { overflow: hidden; }
+.img-zoom img { transition: transform 0.5s ease; }
+.img-zoom:hover img { transform: scale(1.08); }
+
+.dark .hero-overlay { background: rgba(0,0,0,0.6); }
+.light .hero-overlay { background: rgba(0,0,0,0.35); }
+
+.map-placeholder { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); }
+.dark .map-placeholder { background: linear-gradient(135deg, #1b3a1b 0%, #0d2818 100%); }
+
+.form-input:focus { outline: none; border-color: #15803d; box-shadow: 0 0 0 3px rgba(21,128,61,0.15); }
