@@ -1,6 +1,5 @@
 # ============================================
 # Git 忽略文件配置
-# 忽略缓存、系统文件、本地无关资源
 # ============================================
 
 # 系统文件
@@ -23,6 +22,7 @@ npm-debug.log*
 *.temp
 *.swp
 *~
+~$*
 
 # 操作系统文件
 *.directory
@@ -32,17 +32,20 @@ npm-debug.log*
 .env.local
 .env.*.local
 
-# 构建输出（本项目无构建步骤，但预防性添加）
+# 依赖目录
+node_modules/
+
+# 构建输出
 dist/
 build/
 out/
 
-# 依赖目录（本项目使用 CDN，但预防性添加）
-node_modules/
+# Vue 生产构建输出（会被复制到 server/public）
+client/dist/
+server/public/
 
 # 测试覆盖率
 .coverage/
 
 # 其他
 .cache/
-\n~$*\n*.tmp

@@ -24,6 +24,9 @@ app.use(express.urlencoded({ extended: true }));
 // 静态文件服务（上传的图片等）
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+// 图片资源（从项目根目录的 images 文件夹）
+app.use('/images', express.static(path.join(__dirname, '..', 'images')));
+
 // 前端静态文件（生产环境）
 app.use(express.static(path.join(__dirname, 'public')));
 

@@ -1,8 +1,0 @@
-[
-  { "id": 1, "icon": "fa-seedling", "title": "原料种植", "desc": "优质马铃薯种植基地\n源头把控品质" },
-  { "id": 2, "icon": "fa-truck", "title": "收储运输", "desc": "科学仓储保鲜\n确保原料新鲜" },
-  { "id": 3, "icon": "fa-tint", "title": "清洗加工", "desc": "先进生产线\n清洗破碎提取淀粉" },
-  { "id": 4, "icon": "fa-flask", "title": "精制检测", "desc": "精制提纯工艺\n严格质量检测" },
-  { "id": 5, "icon": "fa-box", "title": "包装入库", "desc": "自动化包装\n规范入库管理" },
-  { "id": 6, "icon": "fa-shipping-fast", "title": "物流配送", "desc": "快速响应订单\n安全高效送达" }
-]
