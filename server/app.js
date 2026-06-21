@@ -179,7 +179,40 @@ const defaultData = {
     { id: 4, image: "images/certificates/cert-iso45001.jpg", title: "职业健康安全管理体系认证", description: "ISO 45001:2018" },
     { id: 5, image: "images/certificates/cert-honor.jpg", title: "企业荣誉证书", description: "农业产业化龙头企业" }
   ],
-  messages: []
+  messages: [],
+  images: {
+    hero: [
+      { id: 1, key: "hero-1", label: "首页轮播图1", path: "images/hero/hero-1.jpg", alt: "双益农业基地" },
+      { id: 2, key: "hero-2", label: "首页轮播图2", path: "images/hero/hero-2.jpg", alt: "现代化生产线" },
+      { id: 3, key: "hero-3", label: "首页轮播图3", path: "images/hero/hero-3.jpg", alt: "绿色种植基地" }
+    ],
+    about: [
+      { id: 1, key: "about-1", label: "关于我们主图", path: "images/about/about-1.jpg", alt: "公司生产基地" },
+      { id: 2, key: "about-2", label: "关于我们副图", path: "images/about/about-2.jpg", alt: "现代化生产车间" }
+    ],
+    products: [
+      { id: 1, key: "product-starch", label: "马铃薯精淀粉", path: "images/products/product-starch.jpg", alt: "马铃薯精淀粉" },
+      { id: 2, key: "product-industrial", label: "马铃薯蛋白", path: "images/products/product-industrial.jpg", alt: "马铃薯蛋白" },
+      { id: 3, key: "product-custom", label: "马铃薯膳食纤维", path: "images/products/product-custom.jpg", alt: "马铃薯膳食纤维" }
+    ],
+    factory: [
+      { id: 1, key: "factory-1", label: "生产设备", path: "images/factory/factory-1.jpg", alt: "生产设备" },
+      { id: 2, key: "factory-2", label: "加工车间", path: "images/factory/factory-2.jpg", alt: "加工车间" },
+      { id: 3, key: "factory-3", label: "质量检测", path: "images/factory/factory-3.jpg", alt: "质量检测" },
+      { id: 4, key: "factory-4", label: "仓储物流", path: "images/factory/factory-4.jpg", alt: "仓储物流" }
+    ],
+    certificates: [
+      { id: 1, key: "cert-food", label: "食品生产许可证", path: "images/certificates/cert-food.jpg", alt: "食品生产许可证" },
+      { id: 2, key: "cert-iso9001", label: "质量管理体系认证", path: "images/certificates/cert-iso9001.jpg", alt: "质量管理体系认证" },
+      { id: 3, key: "cert-iso14001", label: "环境管理体系认证", path: "images/certificates/cert-iso14001.jpg", alt: "环境管理体系认证" },
+      { id: 4, key: "cert-iso45001", label: "职业健康安全管理体系认证", path: "images/certificates/cert-iso45001.jpg", alt: "职业健康安全管理体系认证" },
+      { id: 5, key: "cert-honor", label: "企业荣誉证书", path: "images/certificates/cert-honor.jpg", alt: "企业荣誉证书" }
+    ],
+    qrCodes: [
+      { id: 1, key: "qrcode-wechat", label: "公众号二维码", path: "images/qr-codes/qrcode-wechat.jpg", alt: "关注公众号" },
+      { id: 2, key: "qrcode-video", label: "视频号二维码", path: "images/qr-codes/qrcode-video.jpg", alt: "关注视频号" }
+    ]
+  }
 };
 
 // 如果数据库文件不存在，创建它
@@ -220,6 +253,72 @@ function requireAuth(req, res, next) {
   req.user = sessions.get(token);
   next();
 }
+
+// ============================================
+// 文件上传配置（multer）
+// ============================================
+const multer = require('multer');
+
+const upload = multer({
+  storage: multer.diskStorage({
+    destination: (req, file, cb) => {
+      const type = req.params.type || 'uploads';
+      const dir = path.join(__dirname, '..', 'images', type);
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      cb(null, dir);
+    },
+    filename: (req, file, cb) => {
+      const key = req.params.key || Date.now().toString();
+      const ext = path.extname(file.originalname);
+      cb(null, key + ext);
+    }
+  }),
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
+  fileFilter: (req, file, cb) => {
+    const allowed = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
+    const ext = path.extname(file.originalname).toLowerCase();
+    if (allowed.includes(ext)) cb(null, true);
+    else cb(new Error('只允许上传图片文件（jpg/png/gif/webp）'));
+  }
+});
+
+// ============================================
+// 图片管理 API
+// ============================================
+app.get('/api/images', async (req, res) => {
+  await db.read();
+  res.json({ success: true, data: db.data.images || {} });
+});
+
+app.post('/api/upload/:type/:key', requireAuth, upload.single('file'), async (req, res) => {
+  await db.read();
+  const { type, key } = req.params;
+  if (!req.file) return res.status(400).json({ success: false, message: '上传失败' });
+  
+  const ext = path.extname(req.file.originalname);
+  const newPath = `images/${type}/${key}${ext}`;
+  
+  // 更新 db.json 中的图片路径
+  if (db.data.images && db.data.images[type]) {
+    const img = db.data.images[type].find(i => i.key === key);
+    if (img) {
+      img.path = newPath;
+      await db.write();
+    }
+  }
+  
+  res.json({ success: true, path: newPath, url: '/' + newPath });
+});
+
+app.put('/api/images/:type', requireAuth, async (req, res) => {
+  await db.read();
+  const { type } = req.params;
+  if (db.data.images) {
+    db.data.images[type] = req.body;
+    await db.write();
+  }
+  res.json({ success: true });
+});
 
 // ============================================
 // API 路由

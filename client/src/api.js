@@ -58,7 +58,11 @@ export const api = {
   submitMessage: (data) => API.post('/messages', data),
   deleteMessage: (id) => API.delete(`/messages/${id}`),
 
-  // 登录
-  login: (password) => API.post('/login', { password }),
+  // 图片管理
+  getImages: () => API.get('/images'),
+  uploadImage: (type, key, formData) => API.post(`/upload/${type}/${key}`, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  }),
+  updateImages: (type, data) => API.put(`/images/${type}`, data),
   logout: () => API.post('/logout')
 };

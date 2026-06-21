@@ -271,17 +271,42 @@ const contactItems = computed(() => [
 
 async function loadAll() {
   try {
-    const [heroRes, statsRes, aboutRes, productsRes, stepsRes, factoryRes, certRes, newsRes, contactRes] = await Promise.all([
+    const [heroRes, statsRes, aboutRes, productsRes, stepsRes, factoryRes, certRes, newsRes, contactRes, imagesRes] = await Promise.all([
       api.getHero(), api.getStats(), api.getAbout(), api.getProducts(),
-      api.getSteps(), api.getFactory(), api.getCertificates(), api.getNews(), api.getContact()
+      api.getSteps(), api.getFactory(), api.getCertificates(), api.getNews(), api.getContact(), api.getImages()
     ]);
-    heroSlides.value = heroRes.data.data || [];
+    const images = imagesRes.data.data || {};
+    
+    // Hero 轮播：用后端 images 覆盖图片路径
+    heroSlides.value = (heroRes.data.data || []).map((slide, i) => {
+      const img = images.hero?.find(img => img.id === i + 1);
+      return img ? { ...slide, image: img.path, alt: img.alt || slide.alt } : slide;
+    });
+    
     stats.value = (statsRes.data.data || []).map(s => ({ ...s, animated: 0 }));
     about.value = aboutRes.data.data || {};
-    products.value = productsRes.data.data || [];
+    // 关于我们：用后端 images 覆盖图片路径
+    if (about.value.images && images.about) {
+      const mainImg = images.about.find(img => img.key === 'about-1');
+      const secImg = images.about.find(img => img.key === 'about-2');
+      if (mainImg) about.value.images.main = mainImg.path;
+      if (secImg) about.value.images.secondary = secImg.path;
+    }
+    
+    products.value = (productsRes.data.data || []).map((p, i) => {
+      const img = images.products?.find(img => img.id === i + 1);
+      return img ? { ...p, image: img.path } : p;
+    });
+    
     steps.value = stepsRes.data.data || [];
-    factory.value = factoryRes.data.data || [];
-    certificates.value = certRes.data.data || [];
+    factory.value = (factoryRes.data.data || []).map((f, i) => {
+      const img = images.factory?.find(img => img.id === i + 1);
+      return img ? { ...f, image: img.path } : f;
+    });
+    certificates.value = (certRes.data.data || []).map((c, i) => {
+      const img = images.certificates?.find(img => img.id === i + 1);
+      return img ? { ...c, image: img.path } : c;
+    });
     news.value = newsRes.data.data || { company: [], industry: [], knowledge: [] };
     contactData.value = contactRes.data.data || {};
   } catch (e) {

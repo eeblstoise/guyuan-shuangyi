@@ -70,6 +70,33 @@
           </div>
         </div>
 
+        <!-- 图片管理 -->
+        <div v-if="currentTab === 'images'">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">图片管理</h2>
+          <div class="space-y-6">
+            <div v-for="cat in imageCategories" :key="cat.key" class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+              <h3 class="font-bold text-lg mb-4">{{ cat.label }}</h3>
+              <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div v-for="img in images[cat.key]" :key="img.key" class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3">
+                  <div class="aspect-[4/3] rounded-lg overflow-hidden mb-2 bg-gray-200 dark:bg-gray-600">
+                    <img :src="img.path" :alt="img.label" class="w-full h-full object-cover">
+                  </div>
+                  <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 truncate">{{ img.label }}</p>
+                  <p class="text-xs text-gray-400 truncate mb-2">{{ img.path }}</p>
+                  <label class="block">
+                    <input type="file" accept="image/*" class="hidden" @change="uploadImage(cat.key === 'qrCodes' ? 'qr-codes' : cat.key, img.key, $event)">
+                    <span class="block text-center py-1.5 bg-primary-700 hover:bg-primary-800 text-white text-sm rounded-lg cursor-pointer transition-colors">
+                      <i v-if="uploading[`${cat.key}-${img.key}`]" class="fas fa-spinner fa-spin mr-1"></i>
+                      <i v-else class="fas fa-upload mr-1"></i>
+                      {{ uploading[`${cat.key === 'qrCodes' ? 'qr-codes' : cat.key}-${img.key}`] ? '上传中...' : '替换图片' }}
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- 新闻管理 -->
         <div v-if="currentTab === 'news'">
           <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">新闻管理</h2>
@@ -193,6 +220,7 @@ function goHome() { router.push('/'); }
 const currentTab = ref('contact');
 const tabs = [
   { key: 'contact', label: '联系方式', icon: 'fa-address-card' },
+  { key: 'images', label: '图片管理', icon: 'fa-image' },
   { key: 'news', label: '新闻管理', icon: 'fa-newspaper' },
   { key: 'products', label: '产品管理', icon: 'fa-box' },
   { key: 'about', label: '关于我们', icon: 'fa-building' },
@@ -221,18 +249,31 @@ const messages = ref([]);
 const saving = ref(false);
 const saveSuccess = ref(false);
 
+// 图片管理
+const images = ref({});
+const imageCategories = [
+  { key: 'hero', label: '首页轮播图' },
+  { key: 'about', label: '关于我们' },
+  { key: 'products', label: '产品图片' },
+  { key: 'factory', label: '工厂照片' },
+  { key: 'certificates', label: '资质证书' },
+  { key: 'qrCodes', label: '二维码' }
+];
+const uploading = ref({});
+
 // ============================================
 // 加载数据
 // ============================================
 async function loadAll() {
-  const [cRes, nRes, pRes, aRes, mRes] = await Promise.all([
-    api.getContact(), api.getNews(), api.getProducts(), api.getAbout(), api.getMessages()
+  const [cRes, nRes, pRes, aRes, mRes, iRes] = await Promise.all([
+    api.getContact(), api.getNews(), api.getProducts(), api.getAbout(), api.getMessages(), api.getImages()
   ]);
   contact.value = cRes.data.data || {};
   news.value = nRes.data.data || { company: [], industry: [], knowledge: [] };
   products.value = pRes.data.data || [];
   about.value = aRes.data.data || { paragraphs: [] };
   messages.value = mRes.data.data || [];
+  images.value = iRes.data.data || {};
 }
 
 // ============================================
@@ -287,6 +328,23 @@ async function saveAbout() {
   try { await api.updateAbout(about.value); saveSuccess.value = true; setTimeout(() => saveSuccess.value = false, 3000); }
   catch (e) { alert('保存失败'); }
   saving.value = false;
+}
+
+async function uploadImage(type, key, event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  uploading.value[`${type}-${key}`] = true;
+  try {
+    const formData = new FormData();
+    formData.append('file', file);
+    await api.uploadImage(type, key, formData);
+    alert('图片上传成功');
+    loadAll();
+  } catch (e) {
+    alert('上传失败：' + (e.response?.data?.message || e.message));
+  }
+  uploading.value[`${type}-${key}`] = false;
+  event.target.value = '';
 }
 
 async function deleteMessage(id) {
