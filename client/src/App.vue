@@ -13,7 +13,11 @@ import NavBar from './components/NavBar.vue';
 const contact = ref({});
 
 onMounted(async () => {
-  const { data } = await api.getContact();
-  contact.value = data.data || {};
+  try {
+    const { data } = await api.getContact();
+    contact.value = data.data || {};
+  } catch (e) {
+    console.warn('获取联系方式失败，使用默认数据', e);
+  }
 });
 </script>
