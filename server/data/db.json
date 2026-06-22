@@ -1,0 +1,466 @@
+{
+  "contact": {
+    "company": "沽源县双益农业发展有限公司",
+    "address": "河北省张家口市沽源县经济开发区北区",
+    "phone": "13722309335",
+    "email": "shuangyi@shuangyiny.com",
+    "workHours": "周一至周六 8:00-17:30"
+  },
+  "stats": [
+    {
+      "id": 1,
+      "target": 50000,
+      "suffix": "m²+",
+      "label": "生产基地",
+      "icon": "fa-industry"
+    },
+    {
+      "id": 2,
+      "target": 20,
+      "suffix": "+",
+      "label": "合作客户",
+      "icon": "fa-handshake"
+    },
+    {
+      "id": 3,
+      "target": 150000,
+      "suffix": "吨",
+      "label": "年加工马铃薯",
+      "icon": "fa-cogs"
+    },
+    {
+      "id": 4,
+      "target": 10,
+      "suffix": "+",
+      "label": "行业经验",
+      "icon": "fa-award"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "马铃薯精淀粉",
+      "icon": "fa-wheat-awn",
+      "description": "采用荷兰全封闭全旋流工艺精制而成，白度高、粘度高、糊化温度低，广泛应用于食品加工、粉条、速冻食品、调味品等领域。",
+      "image": "images/products/product-starch.jpg",
+      "link": "#contact"
+    },
+    {
+      "id": 2,
+      "name": "马铃薯蛋白",
+      "icon": "fa-flask",
+      "description": "从马铃薯加工过程中提取的高纯度植物蛋白，营养价值高，可作为食品添加剂广泛应用于肉制品、面制品、乳制品等行业。",
+      "image": "images/products/product-industrial.jpg",
+      "link": "#contact"
+    },
+    {
+      "id": 3,
+      "name": "马铃薯膳食纤维",
+      "icon": "fa-leaf",
+      "description": "以马铃薯加工副产物为原料提取的天然膳食纤维，富含多种营养成分，可用于功能性食品、保健品及饲料添加剂。",
+      "image": "images/products/product-custom.jpg",
+      "link": "#contact"
+    }
+  ],
+  "news": {
+    "company": [
+      {
+        "id": 1,
+        "title": "双益农业新生产线正式投产",
+        "date": "2026-05-20",
+        "url": "#"
+      },
+      {
+        "id": 2,
+        "title": "公司参加农产品加工行业交流会",
+        "date": "2026-04-15",
+        "url": "#"
+      },
+      {
+        "id": 3,
+        "title": "双益农业荣获\"诚信企业\"称号",
+        "date": "2026-03-28",
+        "url": "#"
+      }
+    ],
+    "industry": [
+      {
+        "id": 1,
+        "title": "马铃薯淀粉行业市场分析报告",
+        "date": "2026-05-18",
+        "url": "#"
+      },
+      {
+        "id": 2,
+        "title": "淀粉加工技术发展趋势",
+        "date": "2026-04-10",
+        "url": "#"
+      },
+      {
+        "id": 3,
+        "title": "国家政策支持农业产业化发展",
+        "date": "2026-03-22",
+        "url": "#"
+      }
+    ],
+    "knowledge": [
+      {
+        "id": 1,
+        "title": "马铃薯的营养价值与功效",
+        "date": "2026-05-12",
+        "url": "#"
+      },
+      {
+        "id": 2,
+        "title": "如何挑选优质马铃薯",
+        "date": "2026-04-05",
+        "url": "#"
+      },
+      {
+        "id": 3,
+        "title": "马铃薯种植技术要点",
+        "date": "2026-03-18",
+        "url": "#"
+      }
+    ]
+  },
+  "about": {
+    "sectionTitle": "About Us",
+    "sectionTitleCN": "关于双益农业",
+    "images": {
+      "main": "images/about/about-1.jpg",
+      "mainAlt": "公司生产基地",
+      "secondary": "images/about/about-2.jpg",
+      "secondaryAlt": "现代化生产车间"
+    },
+    "paragraphs": [
+      "沽源县双益农业发展有限公司创建于2013年10月，位于河北省张家口市沽源县经济开发区北区，是一家投资5000万元，年加工马铃薯15万吨的现代化农业企业。",
+      "公司以当地丰富的马铃薯资源为依托，以淀粉加工为先导，综合开发利用马铃薯资源，变资源优势为经济优势。采用荷兰全封闭全旋流工艺，设备运行稳定，为产品质量提供了可靠的保证。",
+      "公司主要产品包括马铃薯精淀粉、马铃薯蛋白、马铃薯膳食纤维等，广泛应用于食品、纺织、造纸、化工、医药等行业。投产以来产品全部达到国家优级品指标，受到国内多家大型食品加工企业认可。"
+    ],
+    "features": [
+      {
+        "icon": "fa-check-circle",
+        "text": "ISO9001质量管理体系认证"
+      },
+      {
+        "icon": "fa-check-circle",
+        "text": "科技型中小企业认定"
+      },
+      {
+        "icon": "fa-check-circle",
+        "text": "荷兰全封闭全旋流工艺"
+      },
+      {
+        "icon": "fa-check-circle",
+        "text": "国家优级品标准"
+      }
+    ],
+    "moreLink": {
+      "text": "了解更多",
+      "href": "#strength"
+    }
+  },
+  "hero": [
+    {
+      "id": 1,
+      "image": "images/hero/hero-1.jpg",
+      "alt": "双益农业基地",
+      "title": "双益农业",
+      "subtitle": "中国高寒地区马铃薯淀粉供应商",
+      "description": "集种植、收储、加工、销售于一体的现代农业产业化企业",
+      "buttons": [
+        {
+          "text": "了解我们",
+          "href": "#about",
+          "style": "primary"
+        },
+        {
+          "text": "产品中心",
+          "href": "#products",
+          "style": "outline"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "image": "images/hero/hero-2.jpg",
+      "alt": "现代化生产线",
+      "title": "现代化生产线",
+      "subtitle": "年加工能力150000吨",
+      "description": "采用荷兰全封闭全旋流工艺，实现全程自动化控制，确保产品品质稳定",
+      "buttons": [
+        {
+          "text": "生产实力",
+          "href": "#strength",
+          "style": "primary"
+        },
+        {
+          "text": "品质保障",
+          "href": "#quality",
+          "style": "outline"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "image": "images/hero/hero-3.jpg",
+      "alt": "绿色种植基地",
+      "title": "50000㎡生产基地",
+      "subtitle": "优质原料，源头把控",
+      "description": "自有高标准种植示范基地，从源头确保每一滴淀粉的纯净品质",
+      "buttons": [
+        {
+          "text": "联系我们",
+          "href": "#contact",
+          "style": "primary"
+        },
+        {
+          "text": "了解产品",
+          "href": "#products",
+          "style": "outline"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "icon": "fa-seedling",
+      "title": "原料种植",
+      "desc": "优质马铃薯种植基地\n源头把控品质"
+    },
+    {
+      "id": 2,
+      "icon": "fa-truck",
+      "title": "收储运输",
+      "desc": "科学仓储保鲜\n确保原料新鲜"
+    },
+    {
+      "id": 3,
+      "icon": "fa-tint",
+      "title": "清洗加工",
+      "desc": "先进生产线\n清洗破碎提取淀粉"
+    },
+    {
+      "id": 4,
+      "icon": "fa-flask",
+      "title": "精制检测",
+      "desc": "精制提纯工艺\n严格质量检测"
+    },
+    {
+      "id": 5,
+      "icon": "fa-box",
+      "title": "包装入库",
+      "desc": "自动化包装\n规范入库管理"
+    },
+    {
+      "id": 6,
+      "icon": "fa-shipping-fast",
+      "title": "物流配送",
+      "desc": "快速响应订单\n安全高效送达"
+    }
+  ],
+  "factory": [
+    {
+      "id": 1,
+      "image": "images/factory/factory-1.jpg",
+      "alt": "生产设备"
+    },
+    {
+      "id": 2,
+      "image": "images/factory/factory-2.jpg",
+      "alt": "加工车间"
+    },
+    {
+      "id": 3,
+      "image": "images/factory/factory-3.jpg",
+      "alt": "质量检测"
+    },
+    {
+      "id": 4,
+      "image": "images/factory/factory-4.jpg",
+      "alt": "仓储物流"
+    }
+  ],
+  "certificates": [
+    {
+      "id": 1,
+      "image": "images/certificates/cert-food.jpg",
+      "title": "食品生产许可证",
+      "description": "SC认证，安全合规"
+    },
+    {
+      "id": 2,
+      "image": "images/certificates/cert-iso9001.jpg",
+      "title": "质量管理体系认证",
+      "description": "ISO 9001:2015"
+    },
+    {
+      "id": 3,
+      "image": "images/certificates/cert-iso14001.jpg",
+      "title": "环境管理体系认证",
+      "description": "ISO 14001:2015"
+    },
+    {
+      "id": 4,
+      "image": "images/certificates/cert-iso45001.jpg",
+      "title": "职业健康安全管理体系认证",
+      "description": "ISO 45001:2018"
+    },
+    {
+      "id": 5,
+      "image": "images/certificates/cert-honor.jpg",
+      "title": "企业荣誉证书",
+      "description": "农业产业化龙头企业"
+    }
+  ],
+  "messages": [],
+  "images": {
+    "hero": [
+      {
+        "id": 1,
+        "key": "hero-1",
+        "label": "首页轮播图1",
+        "path": "images/hero/hero-1.jpg",
+        "alt": "双益农业基地"
+      },
+      {
+        "id": 2,
+        "key": "hero-2",
+        "label": "首页轮播图2",
+        "path": "images/hero/hero-2.jpg",
+        "alt": "现代化生产线"
+      },
+      {
+        "id": 3,
+        "key": "hero-3",
+        "label": "首页轮播图3",
+        "path": "images/hero/hero-3.jpg",
+        "alt": "绿色种植基地"
+      }
+    ],
+    "about": [
+      {
+        "id": 1,
+        "key": "about-1",
+        "label": "关于我们主图",
+        "path": "images/about/about-1.jpg",
+        "alt": "公司生产基地"
+      },
+      {
+        "id": 2,
+        "key": "about-2",
+        "label": "关于我们副图",
+        "path": "images/about/about-2.jpg",
+        "alt": "现代化生产车间"
+      }
+    ],
+    "products": [
+      {
+        "id": 1,
+        "key": "product-starch",
+        "label": "马铃薯精淀粉",
+        "path": "images/products/product-starch.jpg",
+        "alt": "马铃薯精淀粉"
+      },
+      {
+        "id": 2,
+        "key": "product-industrial",
+        "label": "马铃薯蛋白",
+        "path": "images/products/product-industrial.jpg",
+        "alt": "马铃薯蛋白"
+      },
+      {
+        "id": 3,
+        "key": "product-custom",
+        "label": "马铃薯膳食纤维",
+        "path": "images/products/product-custom.jpg",
+        "alt": "马铃薯膳食纤维"
+      }
+    ],
+    "factory": [
+      {
+        "id": 1,
+        "key": "factory-1",
+        "label": "生产设备",
+        "path": "images/factory/factory-1.jpg",
+        "alt": "生产设备"
+      },
+      {
+        "id": 2,
+        "key": "factory-2",
+        "label": "加工车间",
+        "path": "images/factory/factory-2.jpg",
+        "alt": "加工车间"
+      },
+      {
+        "id": 3,
+        "key": "factory-3",
+        "label": "质量检测",
+        "path": "images/factory/factory-3.jpg",
+        "alt": "质量检测"
+      },
+      {
+        "id": 4,
+        "key": "factory-4",
+        "label": "仓储物流",
+        "path": "images/factory/factory-4.jpg",
+        "alt": "仓储物流"
+      }
+    ],
+    "certificates": [
+      {
+        "id": 1,
+        "key": "cert-food",
+        "label": "食品生产许可证",
+        "path": "images/certificates/cert-food.jpg",
+        "alt": "食品生产许可证"
+      },
+      {
+        "id": 2,
+        "key": "cert-iso9001",
+        "label": "质量管理体系认证",
+        "path": "images/certificates/cert-iso9001.jpg",
+        "alt": "质量管理体系认证"
+      },
+      {
+        "id": 3,
+        "key": "cert-iso14001",
+        "label": "环境管理体系认证",
+        "path": "images/certificates/cert-iso14001.jpg",
+        "alt": "环境管理体系认证"
+      },
+      {
+        "id": 4,
+        "key": "cert-iso45001",
+        "label": "职业健康安全管理体系认证",
+        "path": "images/certificates/cert-iso45001.jpg",
+        "alt": "职业健康安全管理体系认证"
+      },
+      {
+        "id": 5,
+        "key": "cert-honor",
+        "label": "企业荣誉证书",
+        "path": "images/certificates/cert-honor.jpg",
+        "alt": "企业荣誉证书"
+      }
+    ],
+    "qrCodes": [
+      {
+        "id": 1,
+        "key": "qrcode-wechat",
+        "label": "公众号二维码",
+        "path": "images/qr-codes/qrcode-wechat.jpg",
+        "alt": "关注公众号"
+      },
+      {
+        "id": 2,
+        "key": "qrcode-video",
+        "label": "视频号二维码",
+        "path": "images/qr-codes/qrcode-video.jpg",
+        "alt": "关注视频号"
+      }
+    ]
+  }
+}
