@@ -70,6 +70,25 @@
           </div>
         </div>
 
+        <!-- 数据统计 -->
+        <div v-if="currentTab === 'stats'">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">数据统计管理</h2>
+          <div class="space-y-4">
+            <div v-for="s in stats" :key="s.id" class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+              <div class="grid md:grid-cols-4 gap-4">
+                <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">数值</label><input v-model.number="s.target" type="number" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-sm"></div>
+                <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">后缀</label><input v-model="s.suffix" type="text" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-sm"></div>
+                <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">标签</label><input v-model="s.label" type="text" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-sm"></div>
+                <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">图标</label><input v-model="s.icon" type="text" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-sm"></div>
+              </div>
+            </div>
+            <button @click="saveStats" :disabled="saving" class="px-6 py-2 bg-primary-700 hover:bg-primary-800 text-white font-medium rounded-lg transition-colors disabled:opacity-50">
+              {{ saving ? '保存中...' : '保存统计' }}
+            </button>
+            <p v-if="saveSuccess" class="text-green-600 text-sm">✅ 保存成功</p>
+          </div>
+        </div>
+
         <!-- 图片管理 -->
         <div v-if="currentTab === 'images'">
           <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">图片管理</h2>
@@ -110,7 +129,10 @@
                 <div v-for="item in news[cat.key]" :key="item.id" class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
                   <div class="flex-1">
                     <input v-model="item.title" type="text" class="w-full px-3 py-1.5 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-sm mb-1" placeholder="标题">
-                    <input v-model="item.date" type="text" class="w-32 px-3 py-1.5 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-sm" placeholder="日期">
+                    <div class="flex gap-2">
+                      <input v-model="item.date" type="text" class="w-32 px-3 py-1.5 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-sm" placeholder="日期">
+                      <input v-model="item.url" type="text" class="flex-1 px-3 py-1.5 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-sm" placeholder="链接（默认#）">
+                    </div>
                   </div>
                   <button @click="saveNews(cat.key, item)" class="text-primary-600 hover:text-primary-800 text-sm"><i class="fas fa-save"></i></button>
                   <button @click="deleteNews(cat.key, item.id)" class="text-red-500 hover:text-red-700 text-sm"><i class="fas fa-trash"></i></button>
@@ -220,12 +242,15 @@ function goHome() { router.push('/'); }
 const currentTab = ref('contact');
 const tabs = [
   { key: 'contact', label: '联系方式', icon: 'fa-address-card' },
+  { key: 'stats', label: '数据统计', icon: 'fa-chart-bar' },
   { key: 'images', label: '图片管理', icon: 'fa-image' },
   { key: 'news', label: '新闻管理', icon: 'fa-newspaper' },
   { key: 'products', label: '产品管理', icon: 'fa-box' },
   { key: 'about', label: '关于我们', icon: 'fa-building' },
   { key: 'messages', label: '留言管理', icon: 'fa-envelope' }
 ];
+
+const stats = ref([]);
 
 const contact = ref({});
 const contactFields = [
@@ -265,10 +290,11 @@ const uploading = ref({});
 // 加载数据
 // ============================================
 async function loadAll() {
-  const [cRes, nRes, pRes, aRes, mRes, iRes] = await Promise.all([
-    api.getContact(), api.getNews(), api.getProducts(), api.getAbout(), api.getMessages(), api.getImages()
+  const [cRes, sRes, nRes, pRes, aRes, mRes, iRes] = await Promise.all([
+    api.getContact(), api.getStats(), api.getNews(), api.getProducts(), api.getAbout(), api.getMessages(), api.getImages()
   ]);
   contact.value = cRes.data.data || {};
+  stats.value = sRes.data.data || [];
   news.value = nRes.data.data || { company: [], industry: [], knowledge: [] };
   products.value = pRes.data.data || [];
   about.value = aRes.data.data || { paragraphs: [] };
@@ -282,6 +308,13 @@ async function loadAll() {
 async function saveContact() {
   saving.value = true;
   try { await api.updateContact(contact.value); saveSuccess.value = true; setTimeout(() => saveSuccess.value = false, 3000); }
+  catch (e) { alert('保存失败'); }
+  saving.value = false;
+}
+
+async function saveStats() {
+  saving.value = true;
+  try { await api.updateStats(stats.value); saveSuccess.value = true; setTimeout(() => saveSuccess.value = false, 3000); }
   catch (e) { alert('保存失败'); }
   saving.value = false;
 }
