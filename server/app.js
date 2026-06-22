@@ -745,7 +745,7 @@ app.post("/api/login", async (req, res) => {
   // 简单密码验证：admin123
   const isMatch = await bcrypt.compare(
     password,
-    "$2a$10$FZIXOscyb8KuvZzLitCd..vpnfNLFkENiNAbDXJAFr2HHAotWMzve",
+    "$2a$10$466gzJwNDRTIVKEm6d1tGOL9BJiQrWLhW4.RLMn87cNeEFDe11cTi",
   ); // admin123
   if (isMatch) {
     const token = crypto.randomBytes(32).toString("hex");

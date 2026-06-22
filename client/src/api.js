@@ -64,5 +64,7 @@ export const api = {
     headers: { 'Content-Type': 'multipart/form-data' }
   }),
   updateImages: (type, data) => API.put(`/images/${type}`, data),
+  // 登录
+  login: (password) => API.post('/login', { password }),
   logout: () => API.post('/logout')
 };
