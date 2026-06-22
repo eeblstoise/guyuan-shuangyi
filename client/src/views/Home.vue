@@ -30,7 +30,7 @@
     </section>
 
     <!-- 数据统计 -->
-    <section class="py-12 md:py-16 bg-white dark:bg-gray-900 relative z-10 -mt-2">
+    <section id="stats-container" class="py-12 md:py-16 bg-white dark:bg-gray-900 relative z-10 -mt-2">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           <div v-for="item in stats" :key="item.id" class="text-center group stat-item" :data-target="item.target" :data-suffix="item.suffix">
@@ -240,7 +240,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, computed } from 'vue';
+import { ref, onMounted, onUnmounted, computed, nextTick } from 'vue';
 import { api } from '../api.js';
 
 // ============================================
@@ -348,7 +348,7 @@ function animateStats() {
 
 const statsObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => { if (entry.isIntersecting) { animateStats(); statsObserver.disconnect(); } });
-}, { threshold: 0.5 });
+}, { threshold: 0.1 });
 
 // ============================================
 // 返回顶部
@@ -384,6 +384,7 @@ async function submitMessage() {
 // ============================================
 onMounted(async () => {
   await loadAll();
+  await nextTick();
   startCarousel();
   window.addEventListener('scroll', onScroll, { passive: true });
   const statsContainer = document.getElementById('stats-container');
