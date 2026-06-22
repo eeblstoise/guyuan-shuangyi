@@ -230,6 +230,7 @@ async function login() {
 }
 
 function logout() {
+  api.logout().catch(() => {});
   localStorage.removeItem('admin_token');
   isLoggedIn.value = false;
 }
@@ -339,37 +340,49 @@ async function addNews(category) {
   const title = prompt('请输入新闻标题');
   if (!title) return;
   const date = new Date().toISOString().split('T')[0];
-  await api.addNews(category, { title, date, url: '#' });
-  loadAll();
+  try {
+    await api.addNews(category, { title, date, url: '#' });
+    loadAll();
+  } catch (e) { alert('添加失败'); }
 }
 
 async function saveNews(category, item) {
-  await api.updateNews(category, item.id, item);
-  alert('已保存');
+  try {
+    await api.updateNews(category, item.id, item);
+    alert('已保存');
+  } catch (e) { alert('保存失败'); }
 }
 
 async function deleteNews(category, id) {
   if (!confirm('确定删除？')) return;
-  await api.deleteNews(category, id);
-  loadAll();
+  try {
+    await api.deleteNews(category, id);
+    loadAll();
+  } catch (e) { alert('删除失败'); }
 }
 
 async function addProduct() {
   const name = prompt('请输入产品名称');
   if (!name) return;
-  await api.addProduct({ name, icon: 'fa-cube', description: '请填写描述', image: '/images/products/product-starch.jpg', link: '#contact' });
-  loadAll();
+  try {
+    await api.addProduct({ name, icon: 'fa-cube', description: '请填写描述', image: '/images/products/product-starch.jpg', link: '#contact' });
+    loadAll();
+  } catch (e) { alert('添加失败'); }
 }
 
 async function saveProduct(p) {
-  await api.updateProduct(p.id, p);
-  alert('已保存');
+  try {
+    await api.updateProduct(p.id, p);
+    alert('已保存');
+  } catch (e) { alert('保存失败'); }
 }
 
 async function deleteProduct(id) {
   if (!confirm('确定删除？')) return;
-  await api.deleteProduct(id);
-  loadAll();
+  try {
+    await api.deleteProduct(id);
+    loadAll();
+  } catch (e) { alert('删除失败'); }
 }
 
 async function saveAbout() {
@@ -398,8 +411,10 @@ async function uploadImage(type, key, event) {
 
 async function deleteMessage(id) {
   if (!confirm('确定删除？')) return;
-  await api.deleteMessage(id);
-  loadAll();
+  try {
+    await api.deleteMessage(id);
+    loadAll();
+  } catch (e) { alert('删除失败'); }
 }
 
 // ============================================

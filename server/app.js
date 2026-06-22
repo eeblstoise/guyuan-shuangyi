@@ -18,9 +18,9 @@ const PORT = process.env.PORT || 3005;
 // ============================================
 // 中间件
 // ============================================
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(cors({ origin: ['http://localhost:5173', 'http://localhost:3000'] }));
+app.use(express.json({ limit: '100kb' }));
+app.use(express.urlencoded({ extended: true, limit: '100kb' }));
 
 // 静态文件服务（上传的图片等）
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
@@ -464,10 +464,7 @@ function initDb() {
 }
 
 // ============================================
-// 简单的内存 session（生产环境建议用 Redis/JWT）
-// ============================================
-const adminPassword = "$2a$10$YourHashedPasswordHere"; // 默认: admin123
-// 实际使用时 bcrypt hash: admin123
+// 内存 session（生产环境建议用 Redis/JWT）
 const sessions = new Map();
 
 // ============================================
@@ -489,8 +486,12 @@ function requireAuth(req, res, next) {
 const upload = multer({
   storage: multer.diskStorage({
     destination: (req, file, cb) => {
-      const type = req.params.type || "uploads";
-      const dir = path.join(__dirname, "..", "images", type);
+      const allowedTypes = ['hero', 'about', 'products', 'factory', 'certificates', 'qr-codes', 'uploads'];
+      const type = req.params.type || 'uploads';
+      if (!allowedTypes.includes(type)) {
+        return cb(new Error('不允许的上传类型'));
+      }
+      const dir = path.join(__dirname, '..', 'images', type);
       if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
       cb(null, dir);
     },
@@ -502,17 +503,17 @@ const upload = multer({
   }),
   limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
   fileFilter: (req, file, cb) => {
-    const allowed = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
+    const allowed = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
     const ext = path.extname(file.originalname).toLowerCase();
     if (allowed.includes(ext)) cb(null, true);
-    else cb(new Error("只允许上传图片文件（jpg/png/gif/webp）"));
+    else cb(new Error('只允许上传图片文件（jpg/png/gif/webp）'));
   },
 });
 
 // ============================================
 // 图片管理 API
 // ============================================
-app.get("/api/images", async (req, res) => {
+app.get("/api/images", (req, res) => {
   readDb();
   res.json({ success: true, data: db.data.images || {} });
 });
@@ -558,7 +559,7 @@ app.put("/api/images/:type", requireAuth, (req, res) => {
 // ============================================
 
 // --- 联系方式 ---
-app.get("/api/contact", async (req, res) => {
+app.get("/api/contact", (req, res) => {
   readDb();
   res.json({ success: true, data: db.data.contact });
 });
@@ -571,7 +572,7 @@ app.put("/api/contact", requireAuth, (req, res) => {
 });
 
 // --- 统计数据 ---
-app.get("/api/stats", async (req, res) => {
+app.get("/api/stats", (req, res) => {
   readDb();
   res.json({ success: true, data: db.data.stats });
 });
@@ -584,7 +585,7 @@ app.put("/api/stats", requireAuth, (req, res) => {
 });
 
 // --- 产品 ---
-app.get("/api/products", async (req, res) => {
+app.get("/api/products", (req, res) => {
   readDb();
   res.json({ success: true, data: db.data.products });
 });
@@ -615,7 +616,7 @@ app.delete("/api/products/:id", requireAuth, (req, res) => {
 });
 
 // --- 新闻 ---
-app.get("/api/news", async (req, res) => {
+app.get("/api/news", (req, res) => {
   readDb();
   res.json({ success: true, data: db.data.news });
 });
@@ -651,7 +652,7 @@ app.delete("/api/news/:category/:id", requireAuth, (req, res) => {
 });
 
 // --- 关于我们 ---
-app.get("/api/about", async (req, res) => {
+app.get("/api/about", (req, res) => {
   readDb();
   res.json({ success: true, data: db.data.about });
 });
@@ -664,7 +665,7 @@ app.put("/api/about", requireAuth, (req, res) => {
 });
 
 // --- Hero 轮播 ---
-app.get("/api/hero", async (req, res) => {
+app.get("/api/hero", (req, res) => {
   readDb();
   res.json({ success: true, data: db.data.hero });
 });
@@ -677,7 +678,7 @@ app.put("/api/hero", requireAuth, (req, res) => {
 });
 
 // --- 生产流程 ---
-app.get("/api/steps", async (req, res) => {
+app.get("/api/steps", (req, res) => {
   readDb();
   res.json({ success: true, data: db.data.steps });
 });
@@ -690,7 +691,7 @@ app.put("/api/steps", requireAuth, (req, res) => {
 });
 
 // --- 工厂照片 ---
-app.get("/api/factory", async (req, res) => {
+app.get("/api/factory", (req, res) => {
   readDb();
   res.json({ success: true, data: db.data.factory });
 });
@@ -703,7 +704,7 @@ app.put("/api/factory", requireAuth, (req, res) => {
 });
 
 // --- 证书 ---
-app.get("/api/certificates", async (req, res) => {
+app.get("/api/certificates", (req, res) => {
   readDb();
   res.json({ success: true, data: db.data.certificates });
 });
@@ -716,7 +717,7 @@ app.put("/api/certificates", requireAuth, (req, res) => {
 });
 
 // --- 留言 ---
-app.get("/api/messages", requireAuth, async (req, res) => {
+app.get("/api/messages", requireAuth, (req, res) => {
   readDb();
   res.json({ success: true, data: db.data.messages || [] });
 });

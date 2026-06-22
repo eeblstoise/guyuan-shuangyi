@@ -240,7 +240,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, computed, nextTick } from 'vue';
+import { ref, onMounted, onUnmounted, nextTick } from 'vue';
 import { api } from '../api.js';
 
 // ============================================
@@ -321,11 +321,11 @@ async function loadAll() {
 const currentSlide = ref(0);
 let slideInterval;
 
-function nextSlide() { currentSlide.value = (currentSlide.value + 1) % heroSlides.value.length; }
-function prevSlide() { currentSlide.value = (currentSlide.value - 1 + heroSlides.value.length) % heroSlides.value.length; }
+function nextSlide() { if (heroSlides.value.length) currentSlide.value = (currentSlide.value + 1) % heroSlides.value.length; }
+function prevSlide() { if (heroSlides.value.length) currentSlide.value = (currentSlide.value - 1 + heroSlides.value.length) % heroSlides.value.length; }
 function goToSlide(i) { currentSlide.value = i; }
 
-function startCarousel() { slideInterval = setInterval(nextSlide, 5000); }
+function startCarousel() { if (heroSlides.value.length) slideInterval = setInterval(nextSlide, 5000); }
 function stopCarousel() { clearInterval(slideInterval); }
 
 // 锚点平滑滚动
@@ -394,6 +394,8 @@ const form = ref({ name: '', phone: '', email: '', message: '' });
 const formSubmitting = ref(false);
 const formSuccess = ref(false);
 
+const formSuccessTimer = ref(null);
+
 async function submitMessage() {
   const phoneRegex = /^1[3-9]\d{9}$|^0\d{2,3}-?\d{7,8}$/;
   if (!phoneRegex.test(form.value.phone)) { alert('请输入有效的电话号码'); return; }
@@ -402,7 +404,8 @@ async function submitMessage() {
     await api.submitMessage(form.value);
     form.value = { name: '', phone: '', email: '', message: '' };
     formSuccess.value = true;
-    setTimeout(() => formSuccess.value = false, 5000);
+    if (formSuccessTimer.value) clearTimeout(formSuccessTimer.value);
+    formSuccessTimer.value = setTimeout(() => formSuccess.value = false, 5000);
   } catch (e) { alert('提交失败'); }
   formSubmitting.value = false;
 }
@@ -422,6 +425,8 @@ onMounted(async () => {
 
 onUnmounted(() => {
   stopCarousel();
+  statsObserver.disconnect();
   window.removeEventListener('scroll', onScroll);
+  if (formSuccessTimer.value) clearTimeout(formSuccessTimer.value);
 });
 </script>

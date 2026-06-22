@@ -60,9 +60,7 @@ export const api = {
 
   // 图片管理
   getImages: () => API.get('/images'),
-  uploadImage: (type, key, formData) => API.post(`/upload/${type}/${key}`, formData, {
-    headers: { 'Content-Type': 'multipart/form-data' }
-  }),
+  uploadImage: (type, key, formData) => API.post(`/upload/${type}/${key}`, formData),
   updateImages: (type, data) => API.put(`/images/${type}`, data),
   // 登录
   login: (password) => API.post('/login', { password }),
