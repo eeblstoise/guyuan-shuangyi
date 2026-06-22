@@ -14,7 +14,7 @@
                   <p class="text-xl md:text-2xl lg:text-3xl text-white mb-4 font-light drop-shadow-md">{{ slide.subtitle }}</p>
                   <p class="text-base md:text-lg text-white/90 mb-8 drop-shadow">{{ slide.description }}</p>
                   <div class="flex flex-wrap gap-4">
-                    <a v-for="btn in slide.buttons" :key="btn.text" :href="btn.href" class="px-6 py-3 font-medium rounded-lg transition-all hover:scale-105" :class="btn.style === 'primary' ? 'bg-primary-700 hover:bg-primary-800 text-white shadow-lg' : 'bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white border border-white/40'">{{ btn.text }}</a>
+                    <a v-for="btn in slide.buttons" :key="btn.text" href="#" @click.prevent="scrollToAnchor(btn.href)" class="px-6 py-3 font-medium rounded-lg transition-all hover:scale-105" :class="btn.style === 'primary' ? 'bg-primary-700 hover:bg-primary-800 text-white shadow-lg' : 'bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white border border-white/40'">{{ btn.text }}</a>
                   </div>
                 </div>
               </div>
@@ -190,14 +190,14 @@
             </div>
           </div>
           <div class="lg:col-span-1">
-            <div class="map-placeholder rounded-xl h-64 lg:h-full min-h-[300px] flex items-center justify-center relative overflow-hidden">
-              <div class="text-center z-10">
-                <div class="w-12 h-12 rounded-full bg-primary-600 flex items-center justify-center mx-auto mb-3"><i class="fas fa-map-marker-alt text-white text-xl"></i></div>
-                <h4 class="font-bold text-primary-800 dark:text-primary-300 mb-1">{{ contactData.company || '沽源县双益农业发展有限公司' }}</h4>
-                <p class="text-sm text-primary-700 dark:text-primary-400">{{ contactData.address || '河北省张家口市沽源县' }}</p>
-              </div>
-              <div class="absolute inset-0 opacity-20">
-                <div class="w-full h-full" style="background-image: radial-gradient(circle, #15803d 1px, transparent 1px); background-size: 20px 20px;"></div>
+            <div id="amap-container" class="rounded-xl h-64 lg:h-full min-h-[300px] relative overflow-hidden bg-gray-100 dark:bg-gray-800">
+              <!-- 高德地图加载中占位 -->
+              <div v-if="!mapLoaded" class="absolute inset-0 flex items-center justify-center z-10">
+                <div class="text-center">
+                  <div class="w-12 h-12 rounded-full bg-primary-600 flex items-center justify-center mx-auto mb-3"><i class="fas fa-map-marker-alt text-white text-xl"></i></div>
+                  <h4 class="font-bold text-primary-800 dark:text-primary-300 mb-1">{{ contactData.company || '沽源县双益农业发展有限公司' }}</h4>
+                  <p class="text-sm text-primary-700 dark:text-primary-400">{{ contactData.address || '河北省张家口市沽源县' }}</p>
+                </div>
               </div>
             </div>
           </div>
@@ -255,6 +255,7 @@ const factory = ref([]);
 const certificates = ref([]);
 const news = ref({ company: [], industry: [], knowledge: [] });
 const contactData = ref({});
+const mapLoaded = ref(false);
 
 const newsSections = [
   { key: 'company', icon: 'fa-building', title: '企业动态' },
@@ -327,6 +328,41 @@ function goToSlide(i) { currentSlide.value = i; }
 function startCarousel() { slideInterval = setInterval(nextSlide, 5000); }
 function stopCarousel() { clearInterval(slideInterval); }
 
+// 锚点平滑滚动
+function scrollToAnchor(href) {
+  const anchor = href.replace('#', '');
+  const el = document.getElementById(anchor);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// 高德地图初始化
+function initMap() {
+  if (typeof AMap === 'undefined') {
+    console.warn('高德地图未加载，请替换 index.html 中的 YOUR_AMAP_KEY 为实际 Key');
+    return;
+  }
+  const map = new AMap.Map('amap-container', {
+    zoom: 15,
+    resizeEnable: true
+  });
+  AMap.plugin('AMap.Geocoder', function() {
+    const geocoder = new AMap.Geocoder();
+    geocoder.getLocation('河北省张家口市沽源县经济开发区北区', function(status, result) {
+      if (status === 'complete' && result.geocodes && result.geocodes.length) {
+        const lnglat = result.geocodes[0].location;
+        map.setCenter(lnglat);
+        new AMap.Marker({
+          position: lnglat,
+          title: '沽源县双益农业发展有限公司'
+        }).add(map);
+        mapLoaded.value = true;
+      } else {
+        console.warn('地理编码失败:', status, result);
+      }
+    });
+  });
+}
+
 // ============================================
 // 统计数字动画
 // ============================================
@@ -389,6 +425,7 @@ onMounted(async () => {
   window.addEventListener('scroll', onScroll, { passive: true });
   const statsContainer = document.getElementById('stats-container');
   if (statsContainer) statsObserver.observe(statsContainer);
+  initMap();
 });
 
 onUnmounted(() => {
