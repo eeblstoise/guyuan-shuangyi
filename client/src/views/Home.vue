@@ -341,26 +341,19 @@ function initMap() {
     console.warn('高德地图未加载，请替换 index.html 中的 YOUR_AMAP_KEY 为实际 Key');
     return;
   }
+  // 沽源县双益农业发展有限公司 精确坐标
+  const lng = 115.68859;
+  const lat = 41.66959;
   const map = new AMap.Map('amap-container', {
-    zoom: 15,
+    zoom: 16,
+    center: [lng, lat],
     resizeEnable: true
   });
-  AMap.plugin('AMap.Geocoder', function() {
-    const geocoder = new AMap.Geocoder();
-    geocoder.getLocation('河北省张家口市沽源县经济开发区北区', function(status, result) {
-      if (status === 'complete' && result.geocodes && result.geocodes.length) {
-        const lnglat = result.geocodes[0].location;
-        map.setCenter(lnglat);
-        new AMap.Marker({
-          position: lnglat,
-          title: '沽源县双益农业发展有限公司'
-        }).add(map);
-        mapLoaded.value = true;
-      } else {
-        console.warn('地理编码失败:', status, result);
-      }
-    });
-  });
+  new AMap.Marker({
+    position: [lng, lat],
+    title: '沽源县双益农业发展有限公司'
+  }).add(map);
+  mapLoaded.value = true;
 }
 
 // ============================================
