@@ -28,11 +28,11 @@
               </div>
             </div>
           </div>
-        </div>
-        <button @click="prevSlide" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white flex items-center justify-center transition-all hover:scale-110 z-10" aria-label="上一张"><i class="fas fa-chevron-left"></i></button>
-        <button @click="nextSlide" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white flex items-center justify-center transition-all hover:scale-110 z-10" aria-label="下一张"><i class="fas fa-chevron-right"></i></button>
-        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-          <button v-for="(s, i) in heroSlides" :key="i" @click="goToSlide(i)" class="w-3 h-3 rounded-full transition-all" :class="i === currentSlide ? 'bg-white scale-125' : 'bg-white/50'"></button>
+          <button type="button" @click.prevent.stop="prevSlide" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white flex items-center justify-center transition-all hover:scale-110 z-20" aria-label="上一张"><i class="fas fa-chevron-left"></i></button>
+          <button type="button" @click.prevent.stop="nextSlide" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white flex items-center justify-center transition-all hover:scale-110 z-20" aria-label="下一张"><i class="fas fa-chevron-right"></i></button>
+          <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+            <button v-for="(s, i) in heroSlides" :key="i" type="button" @click.prevent.stop="goToSlide(i)" class="w-3 h-3 rounded-full transition-all" :class="i === currentSlide ? 'bg-white scale-125' : 'bg-white/50'"></button>
+          </div>
         </div>
       </div>
     </section>
