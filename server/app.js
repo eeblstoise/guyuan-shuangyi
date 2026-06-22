@@ -49,6 +49,8 @@ const defaultData = {
     phone: "13722309335",
     email: "shuangyi@shuangyiny.com",
     workHours: "周一至周六 8:00-17:30",
+    lat: "41.66959",
+    lng: "115.68859",
   },
   stats: [
     {

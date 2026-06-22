@@ -258,7 +258,9 @@ const contactFields = [
   { key: 'address', label: '公司地址' },
   { key: 'phone', label: '联系电话' },
   { key: 'email', label: '电子邮箱' },
-  { key: 'workHours', label: '工作时间' }
+  { key: 'workHours', label: '工作时间' },
+  { key: 'lat', label: '地图纬度' },
+  { key: 'lng', label: '地图经度' }
 ];
 
 const news = ref({ company: [], industry: [], knowledge: [] });

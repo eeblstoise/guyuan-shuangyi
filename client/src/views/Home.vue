@@ -341,9 +341,8 @@ function initMap() {
     console.warn('高德地图未加载，请替换 index.html 中的 YOUR_AMAP_KEY 为实际 Key');
     return;
   }
-  // 沽源县双益农业发展有限公司 精确坐标
-  const lng = 115.68859;
-  const lat = 41.66959;
+  const lat = parseFloat(contactData.value.lat) || 41.66959;
+  const lng = parseFloat(contactData.value.lng) || 115.68859;
   const map = new AMap.Map('amap-container', {
     zoom: 16,
     center: [lng, lat],
@@ -351,7 +350,7 @@ function initMap() {
   });
   new AMap.Marker({
     position: [lng, lat],
-    title: '沽源县双益农业发展有限公司'
+    title: contactData.value.company || '沽源县双益农业发展有限公司'
   }).add(map);
   mapLoaded.value = true;
 }
