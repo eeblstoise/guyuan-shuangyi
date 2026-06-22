@@ -4,12 +4,14 @@
  * 功能: 提供新闻、联系方式、产品、统计数据等 CRUD API
  */
 
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
-const fs = require('fs');
-const { Low } = require('lowdb');
-const { JSONFile } = require('lowdb/node');
+import express from 'express';
+import cors from 'cors';
+import path from 'path';
+import fs from 'fs';
+import { Low } from 'lowdb';
+import { JSONFile } from 'lowdb/node';
+import bcrypt from 'bcryptjs';
+import crypto from 'crypto';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -22,18 +24,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // 静态文件服务（上传的图片等）
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(import.meta.dirname, 'uploads')));
 
 // 图片资源（从项目根目录的 images 文件夹）
-app.use('/images', express.static(path.join(__dirname, '..', 'images')));
+app.use('/images', express.static(path.join(import.meta.dirname, '..', 'images')));
 
 // 前端静态文件（生产环境）
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(import.meta.dirname, 'public')));
 
 // ============================================
 // 数据库初始化
 // ============================================
-const dbPath = path.join(__dirname, 'data', 'db.json');
+const dbPath = path.join(import.meta.dirname, 'data', 'db.json');
 
 // 确保 data 目录存在
 if (!fs.existsSync(path.dirname(dbPath))) {
@@ -257,13 +259,13 @@ function requireAuth(req, res, next) {
 // ============================================
 // 文件上传配置（multer）
 // ============================================
-const multer = require('multer');
+// 文件上传配置（multer）
 
 const upload = multer({
   storage: multer.diskStorage({
     destination: (req, file, cb) => {
       const type = req.params.type || 'uploads';
-      const dir = path.join(__dirname, '..', 'images', type);
+      const dir = path.join(import.meta.dirname, '..', 'images', type);
       if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
       cb(null, dir);
     },
@@ -505,10 +507,9 @@ app.delete('/api/messages/:id', requireAuth, async (req, res) => {
 app.post('/api/login', async (req, res) => {
   const { password } = req.body;
   // 简单密码验证：admin123
-  const bcrypt = require('bcryptjs');
   const isMatch = await bcrypt.compare(password, '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'); // admin123
   if (isMatch) {
-    const token = require('crypto').randomBytes(32).toString('hex');
+    const token = crypto.randomBytes(32).toString('hex');
     sessions.set(token, { loginAt: Date.now() });
     res.json({ success: true, token });
   } else {
@@ -529,7 +530,7 @@ app.get('/api/health', (req, res) => {
 
 // 前端路由回退（SPA 支持）
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(import.meta.dirname, 'public', 'index.html'));
 });
 
 // ============================================

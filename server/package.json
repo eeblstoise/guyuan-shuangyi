@@ -2,6 +2,7 @@
   "name": "guyuan-shuangyi-server",
   "version": "1.0.0",
   "description": "双益农业官网后端 API",
+  "type": "module",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
