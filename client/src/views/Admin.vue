@@ -308,7 +308,7 @@ async function deleteNews(category, id) {
 async function addProduct() {
   const name = prompt('请输入产品名称');
   if (!name) return;
-  await api.addProduct({ name, icon: 'fa-cube', description: '请填写描述', image: 'images/products/product-starch.jpg', link: '#contact' });
+  await api.addProduct({ name, icon: 'fa-cube', description: '请填写描述', image: '/images/products/product-starch.jpg', link: '#contact' });
   loadAll();
 }
 

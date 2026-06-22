@@ -1,6 +1,6 @@
 /**
  * 双益农业官网后端 API
- * 技术栈: Express + lowdb (JSON 文件数据库)
+ * 技术栈: Express + 原生 fs JSON 文件数据库
  * 功能: 提供新闻、联系方式、产品、统计数据等 CRUD API
  */
 
@@ -62,7 +62,7 @@ const defaultData = {
       name: "马铃薯精淀粉",
       icon: "fa-wheat-awn",
       description: "采用荷兰全封闭全旋流工艺精制而成，白度高、粘度高、糊化温度低，广泛应用于食品加工、粉条、速冻食品、调味品等领域。",
-      image: "images/products/product-starch.jpg",
+      image: "/images/products/product-starch.jpg",
       link: "#contact"
     },
     {
@@ -70,7 +70,7 @@ const defaultData = {
       name: "马铃薯蛋白",
       icon: "fa-flask",
       description: "从马铃薯加工过程中提取的高纯度植物蛋白，营养价值高，可作为食品添加剂广泛应用于肉制品、面制品、乳制品等行业。",
-      image: "images/products/product-industrial.jpg",
+      image: "/images/products/product-industrial.jpg",
       link: "#contact"
     },
     {
@@ -78,7 +78,7 @@ const defaultData = {
       name: "马铃薯膳食纤维",
       icon: "fa-leaf",
       description: "以马铃薯加工副产物为原料提取的天然膳食纤维，富含多种营养成分，可用于功能性食品、保健品及饲料添加剂。",
-      image: "images/products/product-custom.jpg",
+      image: "/images/products/product-custom.jpg",
       link: "#contact"
     }
   ],
@@ -103,9 +103,9 @@ const defaultData = {
     sectionTitle: "About Us",
     sectionTitleCN: "关于双益农业",
     images: {
-      main: "images/about/about-1.jpg",
+      main: "/images/about/about-1.jpg",
       mainAlt: "公司生产基地",
-      secondary: "images/about/about-2.jpg",
+      secondary: "/images/about/about-2.jpg",
       secondaryAlt: "现代化生产车间"
     },
     paragraphs: [
@@ -124,7 +124,7 @@ const defaultData = {
   hero: [
     {
       id: 1,
-      image: "images/hero/hero-1.jpg",
+      image: "/images/hero/hero-1.jpg",
       alt: "双益农业基地",
       title: "双益农业",
       subtitle: "中国高寒地区马铃薯淀粉供应商",
@@ -136,7 +136,7 @@ const defaultData = {
     },
     {
       id: 2,
-      image: "images/hero/hero-2.jpg",
+      image: "/images/hero/hero-2.jpg",
       alt: "现代化生产线",
       title: "现代化生产线",
       subtitle: "年加工能力150000吨",
@@ -148,7 +148,7 @@ const defaultData = {
     },
     {
       id: 3,
-      image: "images/hero/hero-3.jpg",
+      image: "/images/hero/hero-3.jpg",
       alt: "绿色种植基地",
       title: "50000㎡生产基地",
       subtitle: "优质原料，源头把控",
@@ -168,50 +168,50 @@ const defaultData = {
     { id: 6, icon: "fa-shipping-fast", title: "物流配送", desc: "快速响应订单\n安全高效送达" }
   ],
   factory: [
-    { id: 1, image: "images/factory/factory-1.jpg", alt: "生产设备" },
-    { id: 2, image: "images/factory/factory-2.jpg", alt: "加工车间" },
-    { id: 3, image: "images/factory/factory-3.jpg", alt: "质量检测" },
-    { id: 4, image: "images/factory/factory-4.jpg", alt: "仓储物流" }
+    { id: 1, image: "/images/factory/factory-1.jpg", alt: "生产设备" },
+    { id: 2, image: "/images/factory/factory-2.jpg", alt: "加工车间" },
+    { id: 3, image: "/images/factory/factory-3.jpg", alt: "质量检测" },
+    { id: 4, image: "/images/factory/factory-4.jpg", alt: "仓储物流" }
   ],
   certificates: [
-    { id: 1, image: "images/certificates/cert-food.jpg", title: "食品生产许可证", description: "SC认证，安全合规" },
-    { id: 2, image: "images/certificates/cert-iso9001.jpg", title: "质量管理体系认证", description: "ISO 9001:2015" },
-    { id: 3, image: "images/certificates/cert-iso14001.jpg", title: "环境管理体系认证", description: "ISO 14001:2015" },
-    { id: 4, image: "images/certificates/cert-iso45001.jpg", title: "职业健康安全管理体系认证", description: "ISO 45001:2018" },
-    { id: 5, image: "images/certificates/cert-honor.jpg", title: "企业荣誉证书", description: "农业产业化龙头企业" }
+    { id: 1, image: "/images/certificates/cert-food.jpg", title: "食品生产许可证", description: "SC认证，安全合规" },
+    { id: 2, image: "/images/certificates/cert-iso9001.jpg", title: "质量管理体系认证", description: "ISO 9001:2015" },
+    { id: 3, image: "/images/certificates/cert-iso14001.jpg", title: "环境管理体系认证", description: "ISO 14001:2015" },
+    { id: 4, image: "/images/certificates/cert-iso45001.jpg", title: "职业健康安全管理体系认证", description: "ISO 45001:2018" },
+    { id: 5, image: "/images/certificates/cert-honor.jpg", title: "企业荣誉证书", description: "农业产业化龙头企业" }
   ],
   messages: [],
   images: {
     hero: [
-      { id: 1, key: "hero-1", label: "首页轮播图1", path: "images/hero/hero-1.jpg", alt: "双益农业基地" },
-      { id: 2, key: "hero-2", label: "首页轮播图2", path: "images/hero/hero-2.jpg", alt: "现代化生产线" },
-      { id: 3, key: "hero-3", label: "首页轮播图3", path: "images/hero/hero-3.jpg", alt: "绿色种植基地" }
+      { id: 1, key: "hero-1", label: "首页轮播图1", path: "/images/hero/hero-1.jpg", alt: "双益农业基地" },
+      { id: 2, key: "hero-2", label: "首页轮播图2", path: "/images/hero/hero-2.jpg", alt: "现代化生产线" },
+      { id: 3, key: "hero-3", label: "首页轮播图3", path: "/images/hero/hero-3.jpg", alt: "绿色种植基地" }
     ],
     about: [
-      { id: 1, key: "about-1", label: "关于我们主图", path: "images/about/about-1.jpg", alt: "公司生产基地" },
-      { id: 2, key: "about-2", label: "关于我们副图", path: "images/about/about-2.jpg", alt: "现代化生产车间" }
+      { id: 1, key: "about-1", label: "关于我们主图", path: "/images/about/about-1.jpg", alt: "公司生产基地" },
+      { id: 2, key: "about-2", label: "关于我们副图", path: "/images/about/about-2.jpg", alt: "现代化生产车间" }
     ],
     products: [
-      { id: 1, key: "product-starch", label: "马铃薯精淀粉", path: "images/products/product-starch.jpg", alt: "马铃薯精淀粉" },
-      { id: 2, key: "product-industrial", label: "马铃薯蛋白", path: "images/products/product-industrial.jpg", alt: "马铃薯蛋白" },
-      { id: 3, key: "product-custom", label: "马铃薯膳食纤维", path: "images/products/product-custom.jpg", alt: "马铃薯膳食纤维" }
+      { id: 1, key: "product-starch", label: "马铃薯精淀粉", path: "/images/products/product-starch.jpg", alt: "马铃薯精淀粉" },
+      { id: 2, key: "product-industrial", label: "马铃薯蛋白", path: "/images/products/product-industrial.jpg", alt: "马铃薯蛋白" },
+      { id: 3, key: "product-custom", label: "马铃薯膳食纤维", path: "/images/products/product-custom.jpg", alt: "马铃薯膳食纤维" }
     ],
     factory: [
-      { id: 1, key: "factory-1", label: "生产设备", path: "images/factory/factory-1.jpg", alt: "生产设备" },
-      { id: 2, key: "factory-2", label: "加工车间", path: "images/factory/factory-2.jpg", alt: "加工车间" },
-      { id: 3, key: "factory-3", label: "质量检测", path: "images/factory/factory-3.jpg", alt: "质量检测" },
-      { id: 4, key: "factory-4", label: "仓储物流", path: "images/factory/factory-4.jpg", alt: "仓储物流" }
+      { id: 1, key: "factory-1", label: "生产设备", path: "/images/factory/factory-1.jpg", alt: "生产设备" },
+      { id: 2, key: "factory-2", label: "加工车间", path: "/images/factory/factory-2.jpg", alt: "加工车间" },
+      { id: 3, key: "factory-3", label: "质量检测", path: "/images/factory/factory-3.jpg", alt: "质量检测" },
+      { id: 4, key: "factory-4", label: "仓储物流", path: "/images/factory/factory-4.jpg", alt: "仓储物流" }
     ],
     certificates: [
-      { id: 1, key: "cert-food", label: "食品生产许可证", path: "images/certificates/cert-food.jpg", alt: "食品生产许可证" },
-      { id: 2, key: "cert-iso9001", label: "质量管理体系认证", path: "images/certificates/cert-iso9001.jpg", alt: "质量管理体系认证" },
-      { id: 3, key: "cert-iso14001", label: "环境管理体系认证", path: "images/certificates/cert-iso14001.jpg", alt: "环境管理体系认证" },
-      { id: 4, key: "cert-iso45001", label: "职业健康安全管理体系认证", path: "images/certificates/cert-iso45001.jpg", alt: "职业健康安全管理体系认证" },
-      { id: 5, key: "cert-honor", label: "企业荣誉证书", path: "images/certificates/cert-honor.jpg", alt: "企业荣誉证书" }
+      { id: 1, key: "cert-food", label: "食品生产许可证", path: "/images/certificates/cert-food.jpg", alt: "食品生产许可证" },
+      { id: 2, key: "cert-iso9001", label: "质量管理体系认证", path: "/images/certificates/cert-iso9001.jpg", alt: "质量管理体系认证" },
+      { id: 3, key: "cert-iso14001", label: "环境管理体系认证", path: "/images/certificates/cert-iso14001.jpg", alt: "环境管理体系认证" },
+      { id: 4, key: "cert-iso45001", label: "职业健康安全管理体系认证", path: "/images/certificates/cert-iso45001.jpg", alt: "职业健康安全管理体系认证" },
+      { id: 5, key: "cert-honor", label: "企业荣誉证书", path: "/images/certificates/cert-honor.jpg", alt: "企业荣誉证书" }
     ],
     qrCodes: [
-      { id: 1, key: "qrcode-wechat", label: "公众号二维码", path: "images/qr-codes/qrcode-wechat.jpg", alt: "关注公众号" },
-      { id: 2, key: "qrcode-video", label: "视频号二维码", path: "images/qr-codes/qrcode-video.jpg", alt: "关注视频号" }
+      { id: 1, key: "qrcode-wechat", label: "公众号二维码", path: "/images/qr-codes/qrcode-wechat.jpg", alt: "关注公众号" },
+      { id: 2, key: "qrcode-video", label: "视频号二维码", path: "/images/qr-codes/qrcode-video.jpg", alt: "关注视频号" }
     ]
   }
 };
@@ -305,32 +305,32 @@ app.get('/api/images', async (req, res) => {
   res.json({ success: true, data: db.data.images || {} });
 });
 
-app.post('/api/upload/:type/:key', requireAuth, upload.single('file'), async (req, res) => {
-  await db.read();
+app.post('/api/upload/:type/:key', requireAuth, upload.single('file'), (req, res) => {
+  readDb();
   const { type, key } = req.params;
   if (!req.file) return res.status(400).json({ success: false, message: '上传失败' });
   
   const ext = path.extname(req.file.originalname);
-  const newPath = `images/${type}/${key}${ext}`;
+  const newPath = `/images/${type}/${key}${ext}`;
   
   // 更新 db.json 中的图片路径
   if (db.data.images && db.data.images[type]) {
     const img = db.data.images[type].find(i => i.key === key);
     if (img) {
       img.path = newPath;
-      await db.write();
+      writeDb();
     }
   }
   
-  res.json({ success: true, path: newPath, url: '/' + newPath });
+  res.json({ success: true, path: newPath, url: newPath });
 });
 
-app.put('/api/images/:type', requireAuth, async (req, res) => {
-  await db.read();
+app.put('/api/images/:type', requireAuth, (req, res) => {
+  readDb();
   const { type } = req.params;
   if (db.data.images) {
     db.data.images[type] = req.body;
-    await db.write();
+    writeDb();
   }
   res.json({ success: true });
 });
@@ -345,8 +345,8 @@ app.get('/api/contact', async (req, res) => {
   res.json({ success: true, data: db.data.contact });
 });
 
-app.put('/api/contact', requireAuth, async (req, res) => {
-  await db.read();
+app.put('/api/contact', requireAuth, (req, res) => {
+  readDb();
   db.data.contact = { ...db.data.contact, ...req.body };
   writeDb();
   res.json({ success: true, data: db.data.contact });
@@ -358,8 +358,8 @@ app.get('/api/stats', async (req, res) => {
   res.json({ success: true, data: db.data.stats });
 });
 
-app.put('/api/stats', requireAuth, async (req, res) => {
-  await db.read();
+app.put('/api/stats', requireAuth, (req, res) => {
+  readDb();
   db.data.stats = req.body;
   writeDb();
   res.json({ success: true, data: db.data.stats });
@@ -371,16 +371,16 @@ app.get('/api/products', async (req, res) => {
   res.json({ success: true, data: db.data.products });
 });
 
-app.post('/api/products', requireAuth, async (req, res) => {
-  await db.read();
+app.post('/api/products', requireAuth, (req, res) => {
+  readDb();
   const newProduct = { id: Date.now(), ...req.body };
   db.data.products.push(newProduct);
   writeDb();
   res.json({ success: true, data: newProduct });
 });
 
-app.put('/api/products/:id', requireAuth, async (req, res) => {
-  await db.read();
+app.put('/api/products/:id', requireAuth, (req, res) => {
+  readDb();
   const idx = db.data.products.findIndex(p => p.id == req.params.id);
   if (idx === -1) return res.status(404).json({ success: false, message: '产品不存在' });
   db.data.products[idx] = { ...db.data.products[idx], ...req.body };
@@ -388,8 +388,8 @@ app.put('/api/products/:id', requireAuth, async (req, res) => {
   res.json({ success: true, data: db.data.products[idx] });
 });
 
-app.delete('/api/products/:id', requireAuth, async (req, res) => {
-  await db.read();
+app.delete('/api/products/:id', requireAuth, (req, res) => {
+  readDb();
   db.data.products = db.data.products.filter(p => p.id != req.params.id);
   writeDb();
   res.json({ success: true });
@@ -401,8 +401,8 @@ app.get('/api/news', async (req, res) => {
   res.json({ success: true, data: db.data.news });
 });
 
-app.post('/api/news/:category', requireAuth, async (req, res) => {
-  await db.read();
+app.post('/api/news/:category', requireAuth, (req, res) => {
+  readDb();
   const category = req.params.category; // company, industry, knowledge
   if (!db.data.news[category]) db.data.news[category] = [];
   const newItem = { id: Date.now(), ...req.body };
@@ -411,8 +411,8 @@ app.post('/api/news/:category', requireAuth, async (req, res) => {
   res.json({ success: true, data: newItem });
 });
 
-app.put('/api/news/:category/:id', requireAuth, async (req, res) => {
-  await db.read();
+app.put('/api/news/:category/:id', requireAuth, (req, res) => {
+  readDb();
   const category = req.params.category;
   const idx = db.data.news[category]?.findIndex(n => n.id == req.params.id);
   if (idx === -1 || idx === undefined) return res.status(404).json({ success: false, message: '新闻不存在' });
@@ -421,8 +421,8 @@ app.put('/api/news/:category/:id', requireAuth, async (req, res) => {
   res.json({ success: true, data: db.data.news[category][idx] });
 });
 
-app.delete('/api/news/:category/:id', requireAuth, async (req, res) => {
-  await db.read();
+app.delete('/api/news/:category/:id', requireAuth, (req, res) => {
+  readDb();
   const category = req.params.category;
   db.data.news[category] = db.data.news[category]?.filter(n => n.id != req.params.id) || [];
   writeDb();
@@ -435,8 +435,8 @@ app.get('/api/about', async (req, res) => {
   res.json({ success: true, data: db.data.about });
 });
 
-app.put('/api/about', requireAuth, async (req, res) => {
-  await db.read();
+app.put('/api/about', requireAuth, (req, res) => {
+  readDb();
   db.data.about = { ...db.data.about, ...req.body };
   writeDb();
   res.json({ success: true, data: db.data.about });
@@ -448,8 +448,8 @@ app.get('/api/hero', async (req, res) => {
   res.json({ success: true, data: db.data.hero });
 });
 
-app.put('/api/hero', requireAuth, async (req, res) => {
-  await db.read();
+app.put('/api/hero', requireAuth, (req, res) => {
+  readDb();
   db.data.hero = req.body;
   writeDb();
   res.json({ success: true, data: db.data.hero });
@@ -461,8 +461,8 @@ app.get('/api/steps', async (req, res) => {
   res.json({ success: true, data: db.data.steps });
 });
 
-app.put('/api/steps', requireAuth, async (req, res) => {
-  await db.read();
+app.put('/api/steps', requireAuth, (req, res) => {
+  readDb();
   db.data.steps = req.body;
   writeDb();
   res.json({ success: true, data: db.data.steps });
@@ -474,8 +474,8 @@ app.get('/api/factory', async (req, res) => {
   res.json({ success: true, data: db.data.factory });
 });
 
-app.put('/api/factory', requireAuth, async (req, res) => {
-  await db.read();
+app.put('/api/factory', requireAuth, (req, res) => {
+  readDb();
   db.data.factory = req.body;
   writeDb();
   res.json({ success: true, data: db.data.factory });
@@ -487,8 +487,8 @@ app.get('/api/certificates', async (req, res) => {
   res.json({ success: true, data: db.data.certificates });
 });
 
-app.put('/api/certificates', requireAuth, async (req, res) => {
-  await db.read();
+app.put('/api/certificates', requireAuth, (req, res) => {
+  readDb();
   db.data.certificates = req.body;
   writeDb();
   res.json({ success: true, data: db.data.certificates });
@@ -500,8 +500,8 @@ app.get('/api/messages', requireAuth, async (req, res) => {
   res.json({ success: true, data: db.data.messages || [] });
 });
 
-app.post('/api/messages', async (req, res) => {
-  await db.read();
+app.post('/api/messages', (req, res) => {
+  readDb();
   const newMsg = { id: Date.now(), ...req.body, createdAt: new Date().toISOString() };
   if (!db.data.messages) db.data.messages = [];
   db.data.messages.push(newMsg);
@@ -509,8 +509,8 @@ app.post('/api/messages', async (req, res) => {
   res.json({ success: true, data: newMsg });
 });
 
-app.delete('/api/messages/:id', requireAuth, async (req, res) => {
-  await db.read();
+app.delete('/api/messages/:id', requireAuth, (req, res) => {
+  readDb();
   db.data.messages = db.data.messages.filter(m => m.id != req.params.id);
   writeDb();
   res.json({ success: true });
@@ -549,18 +549,17 @@ app.get('*', (req, res) => {
 // ============================================
 // 启动
 // ============================================
-initDb().then(() => {
-  app.listen(PORT, () => {
-    console.log(`✅ 双益农业后端 API 已启动: http://localhost:${PORT}`);
-    console.log(`📊 API 文档:`);
-    console.log(`   GET    /api/contact     - 获取联系方式`);
-    console.log(`   PUT    /api/contact     - 更新联系方式 (需登录)`);
-    console.log(`   GET    /api/news        - 获取新闻`);
-    console.log(`   POST   /api/news/:cat   - 添加新闻 (需登录)`);
-    console.log(`   DELETE /api/news/:cat/:id - 删除新闻 (需登录)`);
-    console.log(`   GET    /api/products    - 获取产品`);
-    console.log(`   POST   /api/products    - 添加产品 (需登录)`);
-    console.log(`   POST   /api/login       - 登录 (密码: admin123)`);
-    console.log(`   POST   /api/messages    - 提交留言 (公开)`);
-  });
+initDb();
+app.listen(PORT, () => {
+  console.log(`✅ 双益农业后端 API 已启动: http://localhost:${PORT}`);
+  console.log(`📊 API 文档:`);
+  console.log(`   GET    /api/contact     - 获取联系方式`);
+  console.log(`   PUT    /api/contact     - 更新联系方式 (需登录)`);
+  console.log(`   GET    /api/news        - 获取新闻`);
+  console.log(`   POST   /api/news/:cat   - 添加新闻 (需登录)`);
+  console.log(`   DELETE /api/news/:cat/:id - 删除新闻 (需登录)`);
+  console.log(`   GET    /api/products    - 获取产品`);
+  console.log(`   POST   /api/products    - 添加产品 (需登录)`);
+  console.log(`   POST   /api/login       - 登录 (密码: admin123)`);
+  console.log(`   POST   /api/messages    - 提交留言 (公开)`);
 });

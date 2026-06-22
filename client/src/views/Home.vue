@@ -52,10 +52,10 @@
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <div class="relative">
             <div class="img-zoom rounded-2xl overflow-hidden shadow-xl">
-              <img :src="about.images?.main || 'images/about/about-1.jpg'" :alt="about.images?.mainAlt" class="w-full h-64 md:h-80 object-cover">
+              <img :src="about.images?.main || '/images/about/about-1.jpg'" :alt="about.images?.mainAlt" class="w-full h-64 md:h-80 object-cover">
             </div>
             <div class="absolute -bottom-6 -right-6 md:right-8 w-48 h-32 rounded-xl overflow-hidden shadow-lg border-4 border-white dark:border-gray-700 hidden sm:block">
-              <img :src="about.images?.secondary || 'images/about/about-2.jpg'" :alt="about.images?.secondaryAlt" class="w-full h-full object-cover">
+              <img :src="about.images?.secondary || '/images/about/about-2.jpg'" :alt="about.images?.secondaryAlt" class="w-full h-full object-cover">
             </div>
           </div>
           <div>

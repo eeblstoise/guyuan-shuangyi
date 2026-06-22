@@ -42,7 +42,7 @@
       "name": "马铃薯精淀粉",
       "icon": "fa-wheat-awn",
       "description": "采用荷兰全封闭全旋流工艺精制而成，白度高、粘度高、糊化温度低，广泛应用于食品加工、粉条、速冻食品、调味品等领域。",
-      "image": "images/products/product-starch.jpg",
+      "image": "/images/products/product-starch.jpg",
       "link": "#contact"
     },
     {
@@ -50,7 +50,7 @@
       "name": "马铃薯蛋白",
       "icon": "fa-flask",
       "description": "从马铃薯加工过程中提取的高纯度植物蛋白，营养价值高，可作为食品添加剂广泛应用于肉制品、面制品、乳制品等行业。",
-      "image": "images/products/product-industrial.jpg",
+      "image": "/images/products/product-industrial.jpg",
       "link": "#contact"
     },
     {
@@ -58,7 +58,7 @@
       "name": "马铃薯膳食纤维",
       "icon": "fa-leaf",
       "description": "以马铃薯加工副产物为原料提取的天然膳食纤维，富含多种营养成分，可用于功能性食品、保健品及饲料添加剂。",
-      "image": "images/products/product-custom.jpg",
+      "image": "/images/products/product-custom.jpg",
       "link": "#contact"
     }
   ],
@@ -128,9 +128,9 @@
     "sectionTitle": "About Us",
     "sectionTitleCN": "关于双益农业",
     "images": {
-      "main": "images/about/about-1.jpg",
+      "main": "/images/about/about-1.jpg",
       "mainAlt": "公司生产基地",
-      "secondary": "images/about/about-2.jpg",
+      "secondary": "/images/about/about-2.jpg",
       "secondaryAlt": "现代化生产车间"
     },
     "paragraphs": [
@@ -164,7 +164,7 @@
   "hero": [
     {
       "id": 1,
-      "image": "images/hero/hero-1.jpg",
+      "image": "/images/hero/hero-1.jpg",
       "alt": "双益农业基地",
       "title": "双益农业",
       "subtitle": "中国高寒地区马铃薯淀粉供应商",
@@ -184,7 +184,7 @@
     },
     {
       "id": 2,
-      "image": "images/hero/hero-2.jpg",
+      "image": "/images/hero/hero-2.jpg",
       "alt": "现代化生产线",
       "title": "现代化生产线",
       "subtitle": "年加工能力150000吨",
@@ -204,7 +204,7 @@
     },
     {
       "id": 3,
-      "image": "images/hero/hero-3.jpg",
+      "image": "/images/hero/hero-3.jpg",
       "alt": "绿色种植基地",
       "title": "50000㎡生产基地",
       "subtitle": "优质原料，源头把控",
@@ -264,53 +264,53 @@
   "factory": [
     {
       "id": 1,
-      "image": "images/factory/factory-1.jpg",
+      "image": "/images/factory/factory-1.jpg",
       "alt": "生产设备"
     },
     {
       "id": 2,
-      "image": "images/factory/factory-2.jpg",
+      "image": "/images/factory/factory-2.jpg",
       "alt": "加工车间"
     },
     {
       "id": 3,
-      "image": "images/factory/factory-3.jpg",
+      "image": "/images/factory/factory-3.jpg",
       "alt": "质量检测"
     },
     {
       "id": 4,
-      "image": "images/factory/factory-4.jpg",
+      "image": "/images/factory/factory-4.jpg",
       "alt": "仓储物流"
     }
   ],
   "certificates": [
     {
       "id": 1,
-      "image": "images/certificates/cert-food.jpg",
+      "image": "/images/certificates/cert-food.jpg",
       "title": "食品生产许可证",
       "description": "SC认证，安全合规"
     },
     {
       "id": 2,
-      "image": "images/certificates/cert-iso9001.jpg",
+      "image": "/images/certificates/cert-iso9001.jpg",
       "title": "质量管理体系认证",
       "description": "ISO 9001:2015"
     },
     {
       "id": 3,
-      "image": "images/certificates/cert-iso14001.jpg",
+      "image": "/images/certificates/cert-iso14001.jpg",
       "title": "环境管理体系认证",
       "description": "ISO 14001:2015"
     },
     {
       "id": 4,
-      "image": "images/certificates/cert-iso45001.jpg",
+      "image": "/images/certificates/cert-iso45001.jpg",
       "title": "职业健康安全管理体系认证",
       "description": "ISO 45001:2018"
     },
     {
       "id": 5,
-      "image": "images/certificates/cert-honor.jpg",
+      "image": "/images/certificates/cert-honor.jpg",
       "title": "企业荣誉证书",
       "description": "农业产业化龙头企业"
     }
@@ -322,21 +322,21 @@
         "id": 1,
         "key": "hero-1",
         "label": "首页轮播图1",
-        "path": "images/hero/hero-1.jpg",
+        "path": "/images/hero/hero-1.jpg",
         "alt": "双益农业基地"
       },
       {
         "id": 2,
         "key": "hero-2",
         "label": "首页轮播图2",
-        "path": "images/hero/hero-2.jpg",
+        "path": "/images/hero/hero-2.jpg",
         "alt": "现代化生产线"
       },
       {
         "id": 3,
         "key": "hero-3",
         "label": "首页轮播图3",
-        "path": "images/hero/hero-3.jpg",
+        "path": "/images/hero/hero-3.jpg",
         "alt": "绿色种植基地"
       }
     ],
@@ -345,14 +345,14 @@
         "id": 1,
         "key": "about-1",
         "label": "关于我们主图",
-        "path": "images/about/about-1.jpg",
+        "path": "/images/about/about-1.jpg",
         "alt": "公司生产基地"
       },
       {
         "id": 2,
         "key": "about-2",
         "label": "关于我们副图",
-        "path": "images/about/about-2.jpg",
+        "path": "/images/about/about-2.jpg",
         "alt": "现代化生产车间"
       }
     ],
@@ -361,21 +361,21 @@
         "id": 1,
         "key": "product-starch",
         "label": "马铃薯精淀粉",
-        "path": "images/products/product-starch.jpg",
+        "path": "/images/products/product-starch.jpg",
         "alt": "马铃薯精淀粉"
       },
       {
         "id": 2,
         "key": "product-industrial",
         "label": "马铃薯蛋白",
-        "path": "images/products/product-industrial.jpg",
+        "path": "/images/products/product-industrial.jpg",
         "alt": "马铃薯蛋白"
       },
       {
         "id": 3,
         "key": "product-custom",
         "label": "马铃薯膳食纤维",
-        "path": "images/products/product-custom.jpg",
+        "path": "/images/products/product-custom.jpg",
         "alt": "马铃薯膳食纤维"
       }
     ],
@@ -384,28 +384,28 @@
         "id": 1,
         "key": "factory-1",
         "label": "生产设备",
-        "path": "images/factory/factory-1.jpg",
+        "path": "/images/factory/factory-1.jpg",
         "alt": "生产设备"
       },
       {
         "id": 2,
         "key": "factory-2",
         "label": "加工车间",
-        "path": "images/factory/factory-2.jpg",
+        "path": "/images/factory/factory-2.jpg",
         "alt": "加工车间"
       },
       {
         "id": 3,
         "key": "factory-3",
         "label": "质量检测",
-        "path": "images/factory/factory-3.jpg",
+        "path": "/images/factory/factory-3.jpg",
         "alt": "质量检测"
       },
       {
         "id": 4,
         "key": "factory-4",
         "label": "仓储物流",
-        "path": "images/factory/factory-4.jpg",
+        "path": "/images/factory/factory-4.jpg",
         "alt": "仓储物流"
       }
     ],
@@ -414,35 +414,35 @@
         "id": 1,
         "key": "cert-food",
         "label": "食品生产许可证",
-        "path": "images/certificates/cert-food.jpg",
+        "path": "/images/certificates/cert-food.jpg",
         "alt": "食品生产许可证"
       },
       {
         "id": 2,
         "key": "cert-iso9001",
         "label": "质量管理体系认证",
-        "path": "images/certificates/cert-iso9001.jpg",
+        "path": "/images/certificates/cert-iso9001.jpg",
         "alt": "质量管理体系认证"
       },
       {
         "id": 3,
         "key": "cert-iso14001",
         "label": "环境管理体系认证",
-        "path": "images/certificates/cert-iso14001.jpg",
+        "path": "/images/certificates/cert-iso14001.jpg",
         "alt": "环境管理体系认证"
       },
       {
         "id": 4,
         "key": "cert-iso45001",
         "label": "职业健康安全管理体系认证",
-        "path": "images/certificates/cert-iso45001.jpg",
+        "path": "/images/certificates/cert-iso45001.jpg",
         "alt": "职业健康安全管理体系认证"
       },
       {
         "id": 5,
         "key": "cert-honor",
         "label": "企业荣誉证书",
-        "path": "images/certificates/cert-honor.jpg",
+        "path": "/images/certificates/cert-honor.jpg",
         "alt": "企业荣誉证书"
       }
     ],
@@ -451,14 +451,14 @@
         "id": 1,
         "key": "qrcode-wechat",
         "label": "公众号二维码",
-        "path": "images/qr-codes/qrcode-wechat.jpg",
+        "path": "/images/qr-codes/qrcode-wechat.jpg",
         "alt": "关注公众号"
       },
       {
         "id": 2,
         "key": "qrcode-video",
         "label": "视频号二维码",
-        "path": "images/qr-codes/qrcode-video.jpg",
+        "path": "/images/qr-codes/qrcode-video.jpg",
         "alt": "关注视频号"
       }
     ]
