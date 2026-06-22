@@ -165,7 +165,7 @@
             </div>
             <ul class="space-y-3">
               <li v-for="item in news[section.key]" :key="item.id" class="group">
-                <a :href="item.url" class="flex items-start justify-between gap-2 hover:bg-primary-50 dark:hover:bg-gray-700/50 p-2 rounded-lg transition-colors">
+                <a href="#" @click.prevent="handleNewsClick(item.url)" class="flex items-start justify-between gap-2 hover:bg-primary-50 dark:hover:bg-gray-700/50 p-2 rounded-lg transition-colors">
                   <span class="text-sm text-gray-700 dark:text-gray-300 group-hover:text-primary-700 dark:group-hover:text-primary-400 transition-colors">{{ item.title }}</span>
                   <span class="text-xs text-gray-400 flex-shrink-0 mt-0.5">{{ item.date }}</span>
                 </a>
@@ -343,6 +343,19 @@ function scrollToAnchor(href) {
   const anchor = href.replace('#', '');
   const el = document.getElementById(anchor);
   if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// 新闻链接点击处理
+function handleNewsClick(url) {
+  if (!url || url === '#') return;
+  // 外部链接：以 http:// https:// www. 开头
+  if (/^(https?:\/\/|www\.)/i.test(url)) {
+    const fullUrl = url.startsWith('www.') ? 'https://' + url : url;
+    window.open(fullUrl, '_blank');
+  } else {
+    // 内部锚点
+    scrollToAnchor(url.startsWith('#') ? url : '#' + url);
+  }
 }
 
 // 高德地图初始化

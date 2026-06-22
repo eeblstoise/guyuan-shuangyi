@@ -131,7 +131,7 @@
                     <input v-model="item.title" type="text" class="w-full px-3 py-1.5 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-sm mb-1" placeholder="标题">
                     <div class="flex gap-2">
                       <input v-model="item.date" type="text" class="w-32 px-3 py-1.5 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-sm" placeholder="日期">
-                      <input v-model="item.url" type="text" class="flex-1 px-3 py-1.5 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-sm" placeholder="链接（默认#）">
+                      <input v-model="item.url" type="text" class="flex-1 px-3 py-1.5 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-sm" placeholder="#contact 或 www.baidu.com">
                     </div>
                   </div>
                   <button @click="saveNews(cat.key, item)" class="text-primary-600 hover:text-primary-800 text-sm"><i class="fas fa-save"></i></button>
@@ -348,9 +348,14 @@ async function addNews(category) {
 
 async function saveNews(category, item) {
   try {
-    await api.updateNews(category, item.id, item);
+    const res = await api.updateNews(category, item.id, item);
     alert('已保存');
-  } catch (e) { alert('保存失败'); }
+    console.log('保存成功:', res.data);
+  } catch (e) {
+    const msg = e.response?.data?.message || e.message || '未知错误';
+    alert('保存失败: ' + msg);
+    console.error('保存失败详情:', e);
+  }
 }
 
 async function deleteNews(category, id) {
