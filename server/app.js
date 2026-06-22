@@ -4,14 +4,14 @@
  * 功能: 提供新闻、联系方式、产品、统计数据等 CRUD API
  */
 
-import express from 'express';
-import cors from 'cors';
-import path from 'path';
-import fs from 'fs';
-import { Low } from 'lowdb';
-import { JSONFile } from 'lowdb/node';
-import bcrypt from 'bcryptjs';
-import crypto from 'crypto';
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
+const fs = require('fs');
+const { Low } = require('lowdb');
+const { JSONFile } = require('lowdb/node');
+const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
