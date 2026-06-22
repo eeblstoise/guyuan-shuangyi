@@ -293,20 +293,28 @@ const uploading = ref({});
 // ============================================
 async function loadAll() {
   try {
-    const [cRes, sRes, nRes, pRes, aRes, mRes, iRes] = await Promise.all([
-      api.getContact(), api.getStats(), api.getNews(), api.getProducts(), api.getAbout(), api.getMessages(), api.getImages()
+    // 先加载公开数据（不需要登录）
+    const [cRes, sRes, nRes, pRes, aRes, iRes] = await Promise.all([
+      api.getContact(), api.getStats(), api.getNews(), api.getProducts(), api.getAbout(), api.getImages()
     ]);
     contact.value = cRes.data.data || {};
     stats.value = sRes.data.data || [];
     news.value = nRes.data.data || { company: [], industry: [], knowledge: [] };
     products.value = pRes.data.data || [];
     about.value = aRes.data.data || { paragraphs: [] };
-    messages.value = mRes.data.data || [];
     images.value = iRes.data.data || {};
-    console.log('✅ 数据加载成功:', { contact: contact.value, stats: stats.value.length });
+    console.log('✅ 数据加载成功');
   } catch (e) {
     console.error('❌ 数据加载失败:', e);
     alert('数据加载失败: ' + (e.message || '请检查后端是否启动'));
+  }
+  // 单独加载留言（需要登录，失败不影响其他数据）
+  try {
+    const mRes = await api.getMessages();
+    messages.value = mRes.data.data || [];
+  } catch (e) {
+    console.warn('留言加载失败（可能未登录或权限不足）:', e.message);
+    messages.value = [];
   }
 }
 
