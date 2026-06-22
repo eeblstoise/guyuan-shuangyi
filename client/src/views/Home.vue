@@ -184,8 +184,8 @@
             </div>
             <div class="pt-4 border-t border-gray-100 dark:border-gray-700">
               <div class="grid grid-cols-2 gap-4">
-                <div class="text-center"><div class="w-24 h-24 mx-auto rounded-lg bg-gray-100 dark:bg-gray-800 p-2 mb-2"><img src="/images/qr-codes/qrcode-wechat.jpg" alt="关注公众号" class="w-full h-full object-cover rounded"></div><p class="text-xs text-gray-500 dark:text-gray-400">关注公众号</p></div>
-                <div class="text-center"><div class="w-24 h-24 mx-auto rounded-lg bg-gray-100 dark:bg-gray-800 p-2 mb-2"><img src="/images/qr-codes/qrcode-video.jpg" alt="关注视频号" class="w-full h-full object-cover rounded"></div><p class="text-xs text-gray-500 dark:text-gray-400">关注视频号</p></div>
+                <div class="text-center"><div class="w-24 h-24 mx-auto rounded-lg bg-gray-100 dark:bg-gray-800 p-2 mb-2"><img :src="'/images/qr-codes/qrcode-wechat.jpg'" alt="关注公众号" class="w-full h-full object-cover rounded"></div><p class="text-xs text-gray-500 dark:text-gray-400">关注公众号</p></div>
+                <div class="text-center"><div class="w-24 h-24 mx-auto rounded-lg bg-gray-100 dark:bg-gray-800 p-2 mb-2"><img :src="'/images/qr-codes/qrcode-video.jpg'" alt="关注视频号" class="w-full h-full object-cover rounded"></div><p class="text-xs text-gray-500 dark:text-gray-400">关注视频号</p></div>
               </div>
             </div>
           </div>
