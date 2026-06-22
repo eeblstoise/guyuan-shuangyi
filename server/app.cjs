@@ -8,7 +8,6 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
-const { Low, JSONFile } = require('lowdb');
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
 const multer = require('multer');
@@ -217,24 +216,39 @@ const defaultData = {
   }
 };
 
-// 如果数据库文件不存在，创建它
-if (!fs.existsSync(dbPath)) {
-  fs.writeFileSync(dbPath, JSON.stringify(defaultData, null, 2), 'utf8');
+// 简单的文件数据库（替代 lowdb）
+
+let db = { data: null };
+
+function readDb() {
+  if (!fs.existsSync(dbPath)) {
+    db.data = null;
+    return;
+  }
+  try {
+    const content = fs.readFileSync(dbPath, 'utf-8');
+    db.data = JSON.parse(content);
+  } catch (e) {
+    db.data = null;
+  }
 }
 
-const adapter = new JSONFile(dbPath);
-const db = new Low(adapter, defaultData);
+function writeDb() {
+  if (!fs.existsSync(path.dirname(dbPath))) {
+    fs.mkdirSync(path.dirname(dbPath), { recursive: true });
+  }
+  fs.writeFileSync(dbPath, JSON.stringify(db.data, null, 2), 'utf-8');
+}
 
-async function initDb() {
-  await db.read();
-  // 如果某些字段缺失，补充默认值
-  if (!db.data) db.data = defaultData;
+function initDb() {
+  readDb();
+  if (!db.data) db.data = {};
   for (const key of Object.keys(defaultData)) {
     if (db.data[key] === undefined) {
       db.data[key] = defaultData[key];
     }
   }
-  await db.write();
+  writeDb();
 }
 
 // ============================================
@@ -287,7 +301,7 @@ const upload = multer({
 // 图片管理 API
 // ============================================
 app.get('/api/images', async (req, res) => {
-  await db.read();
+  readDb();
   res.json({ success: true, data: db.data.images || {} });
 });
 
@@ -327,33 +341,33 @@ app.put('/api/images/:type', requireAuth, async (req, res) => {
 
 // --- 联系方式 ---
 app.get('/api/contact', async (req, res) => {
-  await db.read();
+  readDb();
   res.json({ success: true, data: db.data.contact });
 });
 
 app.put('/api/contact', requireAuth, async (req, res) => {
   await db.read();
   db.data.contact = { ...db.data.contact, ...req.body };
-  await db.write();
+  writeDb();
   res.json({ success: true, data: db.data.contact });
 });
 
 // --- 统计数据 ---
 app.get('/api/stats', async (req, res) => {
-  await db.read();
+  readDb();
   res.json({ success: true, data: db.data.stats });
 });
 
 app.put('/api/stats', requireAuth, async (req, res) => {
   await db.read();
   db.data.stats = req.body;
-  await db.write();
+  writeDb();
   res.json({ success: true, data: db.data.stats });
 });
 
 // --- 产品 ---
 app.get('/api/products', async (req, res) => {
-  await db.read();
+  readDb();
   res.json({ success: true, data: db.data.products });
 });
 
@@ -361,7 +375,7 @@ app.post('/api/products', requireAuth, async (req, res) => {
   await db.read();
   const newProduct = { id: Date.now(), ...req.body };
   db.data.products.push(newProduct);
-  await db.write();
+  writeDb();
   res.json({ success: true, data: newProduct });
 });
 
@@ -370,20 +384,20 @@ app.put('/api/products/:id', requireAuth, async (req, res) => {
   const idx = db.data.products.findIndex(p => p.id == req.params.id);
   if (idx === -1) return res.status(404).json({ success: false, message: '产品不存在' });
   db.data.products[idx] = { ...db.data.products[idx], ...req.body };
-  await db.write();
+  writeDb();
   res.json({ success: true, data: db.data.products[idx] });
 });
 
 app.delete('/api/products/:id', requireAuth, async (req, res) => {
   await db.read();
   db.data.products = db.data.products.filter(p => p.id != req.params.id);
-  await db.write();
+  writeDb();
   res.json({ success: true });
 });
 
 // --- 新闻 ---
 app.get('/api/news', async (req, res) => {
-  await db.read();
+  readDb();
   res.json({ success: true, data: db.data.news });
 });
 
@@ -393,7 +407,7 @@ app.post('/api/news/:category', requireAuth, async (req, res) => {
   if (!db.data.news[category]) db.data.news[category] = [];
   const newItem = { id: Date.now(), ...req.body };
   db.data.news[category].unshift(newItem); // 新新闻放前面
-  await db.write();
+  writeDb();
   res.json({ success: true, data: newItem });
 });
 
@@ -403,7 +417,7 @@ app.put('/api/news/:category/:id', requireAuth, async (req, res) => {
   const idx = db.data.news[category]?.findIndex(n => n.id == req.params.id);
   if (idx === -1 || idx === undefined) return res.status(404).json({ success: false, message: '新闻不存在' });
   db.data.news[category][idx] = { ...db.data.news[category][idx], ...req.body };
-  await db.write();
+  writeDb();
   res.json({ success: true, data: db.data.news[category][idx] });
 });
 
@@ -411,78 +425,78 @@ app.delete('/api/news/:category/:id', requireAuth, async (req, res) => {
   await db.read();
   const category = req.params.category;
   db.data.news[category] = db.data.news[category]?.filter(n => n.id != req.params.id) || [];
-  await db.write();
+  writeDb();
   res.json({ success: true });
 });
 
 // --- 关于我们 ---
 app.get('/api/about', async (req, res) => {
-  await db.read();
+  readDb();
   res.json({ success: true, data: db.data.about });
 });
 
 app.put('/api/about', requireAuth, async (req, res) => {
   await db.read();
   db.data.about = { ...db.data.about, ...req.body };
-  await db.write();
+  writeDb();
   res.json({ success: true, data: db.data.about });
 });
 
 // --- Hero 轮播 ---
 app.get('/api/hero', async (req, res) => {
-  await db.read();
+  readDb();
   res.json({ success: true, data: db.data.hero });
 });
 
 app.put('/api/hero', requireAuth, async (req, res) => {
   await db.read();
   db.data.hero = req.body;
-  await db.write();
+  writeDb();
   res.json({ success: true, data: db.data.hero });
 });
 
 // --- 生产流程 ---
 app.get('/api/steps', async (req, res) => {
-  await db.read();
+  readDb();
   res.json({ success: true, data: db.data.steps });
 });
 
 app.put('/api/steps', requireAuth, async (req, res) => {
   await db.read();
   db.data.steps = req.body;
-  await db.write();
+  writeDb();
   res.json({ success: true, data: db.data.steps });
 });
 
 // --- 工厂照片 ---
 app.get('/api/factory', async (req, res) => {
-  await db.read();
+  readDb();
   res.json({ success: true, data: db.data.factory });
 });
 
 app.put('/api/factory', requireAuth, async (req, res) => {
   await db.read();
   db.data.factory = req.body;
-  await db.write();
+  writeDb();
   res.json({ success: true, data: db.data.factory });
 });
 
 // --- 证书 ---
 app.get('/api/certificates', async (req, res) => {
-  await db.read();
+  readDb();
   res.json({ success: true, data: db.data.certificates });
 });
 
 app.put('/api/certificates', requireAuth, async (req, res) => {
   await db.read();
   db.data.certificates = req.body;
-  await db.write();
+  writeDb();
   res.json({ success: true, data: db.data.certificates });
 });
 
 // --- 留言 ---
 app.get('/api/messages', requireAuth, async (req, res) => {
-  await db.read();
+  readDb();
   res.json({ success: true, data: db.data.messages || [] });
 });
 
@@ -491,14 +505,14 @@ app.post('/api/messages', async (req, res) => {
   const newMsg = { id: Date.now(), ...req.body, createdAt: new Date().toISOString() };
   if (!db.data.messages) db.data.messages = [];
   db.data.messages.push(newMsg);
-  await db.write();
+  writeDb();
   res.json({ success: true, data: newMsg });
 });
 
 app.delete('/api/messages/:id', requireAuth, async (req, res) => {
   await db.read();
   db.data.messages = db.data.messages.filter(m => m.id != req.params.id);
-  await db.write();
+  writeDb();
   res.json({ success: true });
 });
 
