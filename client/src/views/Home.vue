@@ -1,5 +1,13 @@
 <template>
   <div>
+    <!-- 加载中遮罩 -->
+    <div v-if="loading" class="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-white dark:bg-gray-900">
+      <div class="w-16 h-16 bg-primary-700 rounded-2xl flex items-center justify-center text-white text-3xl mb-4 animate-pulse">
+        🌱
+      </div>
+      <p class="text-gray-600 dark:text-gray-400">正在加载...</p>
+    </div>
+
     <!-- Hero 轮播 -->
     <section id="home" class="relative h-[600px] md:h-[700px] lg:h-[800px] overflow-hidden pt-16 md:pt-20">
       <div id="carousel" class="relative w-full h-full">
@@ -240,7 +248,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, nextTick } from 'vue';
+import { ref, onMounted, onUnmounted, nextTick, computed } from 'vue';
 import { api } from '../api.js';
 
 // ============================================
@@ -270,7 +278,10 @@ const contactItems = computed(() => [
   { icon: 'fa-clock', label: '工作时间', value: contactData.value.workHours || '周一至周六 8:00-17:30' }
 ]);
 
+const loading = ref(true);
+
 async function loadAll() {
+  loading.value = true;
   try {
     const [heroRes, statsRes, aboutRes, productsRes, stepsRes, factoryRes, certRes, newsRes, contactRes, imagesRes] = await Promise.all([
       api.getHero(), api.getStats(), api.getAbout(), api.getProducts(),
@@ -278,7 +289,6 @@ async function loadAll() {
     ]);
     const images = imagesRes.data.data || {};
     
-    // Hero 轮播：用后端 images 覆盖图片路径
     heroSlides.value = (heroRes.data.data || []).map((slide, i) => {
       const img = images.hero?.find(img => img.id === i + 1);
       return img ? { ...slide, image: img.path, alt: img.alt || slide.alt } : slide;
@@ -286,7 +296,6 @@ async function loadAll() {
     
     stats.value = (statsRes.data.data || []).map(s => ({ ...s, animated: 0 }));
     about.value = aboutRes.data.data || {};
-    // 关于我们：用后端 images 覆盖图片路径
     if (about.value.images && images.about) {
       const mainImg = images.about.find(img => img.key === 'about-1');
       const secImg = images.about.find(img => img.key === 'about-2');
@@ -313,6 +322,7 @@ async function loadAll() {
   } catch (e) {
     console.warn('API 加载失败，使用空数据', e);
   }
+  loading.value = false;
 }
 
 // ============================================
