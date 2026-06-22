@@ -65,7 +65,7 @@
             <div class="grid grid-cols-2 gap-4 mb-6">
               <div v-for="f in about.features" :key="f.text" class="flex items-center gap-2"><i :class="'fas ' + f.icon + ' text-primary-600 dark:text-primary-400'"></i><span class="text-sm text-gray-700 dark:text-gray-300">{{ f.text }}</span></div>
             </div>
-            <a v-if="about.moreLink" :href="about.moreLink.href" class="inline-flex items-center gap-2 text-primary-700 dark:text-primary-400 font-medium hover:gap-3 transition-all">{{ about.moreLink.text }} <i class="fas fa-arrow-right"></i></a>
+            <a v-if="about.moreLink" href="#" @click.prevent="scrollToAnchor(about.moreLink.href)" class="inline-flex items-center gap-2 text-primary-700 dark:text-primary-400 font-medium hover:gap-3 transition-all">{{ about.moreLink.text }} <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
@@ -86,7 +86,7 @@
               <div class="w-12 h-12 rounded-full bg-primary-50 dark:bg-primary-900/30 flex items-center justify-center mb-4"><i :class="'fas ' + p.icon + ' text-primary-700 dark:text-primary-400 text-xl'"></i></div>
               <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{{ p.name }}</h3>
               <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4">{{ p.description }}</p>
-              <a :href="p.link" class="inline-flex items-center gap-1 text-primary-700 dark:text-primary-400 text-sm font-medium hover:gap-2 transition-all">了解更多 <i class="fas fa-arrow-right text-xs"></i></a>
+              <a href="#" @click.prevent="scrollToAnchor(p.link)" class="inline-flex items-center gap-1 text-primary-700 dark:text-primary-400 text-sm font-medium hover:gap-2 transition-all">了解更多 <i class="fas fa-arrow-right text-xs"></i></a>
             </div>
           </div>
         </div>
