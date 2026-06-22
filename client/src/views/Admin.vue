@@ -292,16 +292,22 @@ const uploading = ref({});
 // 加载数据
 // ============================================
 async function loadAll() {
-  const [cRes, sRes, nRes, pRes, aRes, mRes, iRes] = await Promise.all([
-    api.getContact(), api.getStats(), api.getNews(), api.getProducts(), api.getAbout(), api.getMessages(), api.getImages()
-  ]);
-  contact.value = cRes.data.data || {};
-  stats.value = sRes.data.data || [];
-  news.value = nRes.data.data || { company: [], industry: [], knowledge: [] };
-  products.value = pRes.data.data || [];
-  about.value = aRes.data.data || { paragraphs: [] };
-  messages.value = mRes.data.data || [];
-  images.value = iRes.data.data || {};
+  try {
+    const [cRes, sRes, nRes, pRes, aRes, mRes, iRes] = await Promise.all([
+      api.getContact(), api.getStats(), api.getNews(), api.getProducts(), api.getAbout(), api.getMessages(), api.getImages()
+    ]);
+    contact.value = cRes.data.data || {};
+    stats.value = sRes.data.data || [];
+    news.value = nRes.data.data || { company: [], industry: [], knowledge: [] };
+    products.value = pRes.data.data || [];
+    about.value = aRes.data.data || { paragraphs: [] };
+    messages.value = mRes.data.data || [];
+    images.value = iRes.data.data || {};
+    console.log('✅ 数据加载成功:', { contact: contact.value, stats: stats.value.length });
+  } catch (e) {
+    console.error('❌ 数据加载失败:', e);
+    alert('数据加载失败: ' + (e.message || '请检查后端是否启动'));
+  }
 }
 
 // ============================================
@@ -391,11 +397,15 @@ async function deleteMessage(id) {
 // ============================================
 // 初始化
 // ============================================
-onMounted(() => {
+onMounted(async () => {
   const token = localStorage.getItem('admin_token');
   if (token) {
     isLoggedIn.value = true;
-    loadAll();
+    try {
+      await loadAll();
+    } catch (e) {
+      console.error('加载失败:', e);
+    }
   }
 });
 </script>
