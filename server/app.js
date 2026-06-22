@@ -9,7 +9,7 @@ const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
 const bcrypt = require("bcryptjs");
-const crypto = require("crypto");
+const jwt = require("jsonwebtoken");
 const multer = require("multer");
 
 const app = express();
@@ -463,20 +463,23 @@ function initDb() {
   writeDb();
 }
 
-// ============================================
-// 内存 session（生产环境建议用 Redis/JWT）
-const sessions = new Map();
+// JWT 密钥（生产环境应从环境变量读取）
+const JWT_SECRET = process.env.JWT_SECRET || "shuangyi-jwt-secret-2026";
 
 // ============================================
 // 辅助函数
 // ============================================
 function requireAuth(req, res, next) {
   const token = req.headers.authorization?.replace("Bearer ", "");
-  if (!token || !sessions.has(token)) {
+  if (!token) {
     return res.status(401).json({ success: false, message: "未登录" });
   }
-  req.user = sessions.get(token);
-  next();
+  try {
+    jwt.verify(token, JWT_SECRET);
+    next();
+  } catch {
+    return res.status(401).json({ success: false, message: "登录已过期，请重新登录" });
+  }
 }
 
 // ============================================
@@ -745,23 +748,20 @@ app.delete("/api/messages/:id", requireAuth, (req, res) => {
 // --- 登录 ---
 app.post("/api/login", async (req, res) => {
   const { password } = req.body;
-  // 简单密码验证：admin123
   const isMatch = await bcrypt.compare(
     password,
     "$2a$10$466gzJwNDRTIVKEm6d1tGOL9BJiQrWLhW4.RLMn87cNeEFDe11cTi",
   ); // admin123
   if (isMatch) {
-    const token = crypto.randomBytes(32).toString("hex");
-    sessions.set(token, { loginAt: Date.now() });
+    const token = jwt.sign({ admin: true }, JWT_SECRET, { expiresIn: "30d" });
     res.json({ success: true, token });
   } else {
     res.status(401).json({ success: false, message: "密码错误" });
   }
 });
 
+// --- 退出（前端直接清除 token 即可，后端无需处理）---
 app.post("/api/logout", (req, res) => {
-  const token = req.headers.authorization?.replace("Bearer ", "");
-  sessions.delete(token);
   res.json({ success: true });
 });
 
